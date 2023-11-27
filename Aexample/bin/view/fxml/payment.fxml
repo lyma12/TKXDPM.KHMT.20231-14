@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="pageTitle" layoutX="46.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PayMent Screen" AnchorPane.bottomAnchor="547.4375" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="900.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Text>
+      <Button fx:id="btn_return" layoutX="1120.0" layoutY="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" AnchorPane.bottomAnchor="540.0" AnchorPane.leftAnchor="1110.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="20.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/images/return.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Text layoutX="100.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment method:" AnchorPane.bottomAnchor="468.078125" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="956.9765625" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font>
+      </Text>
+      <CheckBox layoutX="137.0" layoutY="162.0" mnemonicParsing="false" selected="true" text="Card" AnchorPane.bottomAnchor="422.6666666666667" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="1030.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </CheckBox>
+      <Button fx:id="btnConfirmPayment" layoutX="594.0" layoutY="504.0" mnemonicParsing="false" text="Confirm Payment" AnchorPane.bottomAnchor="48.666666666666664" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="510.0" AnchorPane.topAnchor="500.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Pane layoutX="676.0" layoutY="89.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: d0d0d0;" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="580.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="90.0">
+         <children>
+            <Text layoutX="35.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card holder name:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="35.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card number: ">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="35.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration date:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="35.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card security code:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="holderName" layoutX="250.0" layoutY="55.0" prefHeight="50.0" prefWidth="300.0" text="Group 1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="cardNumber" layoutX="250.0" layoutY="140.0" prefHeight="50.0" prefWidth="300.0" text="118609_group1_2020">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="expirationDate" layoutX="250.0" layoutY="220.0" prefHeight="50.0" prefWidth="300.0" text="11/25">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="securityCode" layoutX="250.0" layoutY="300.0" prefHeight="50.0" prefWidth="300.0" text="185">
+               <font>
+                  <Font size="24.0" />
+               </font></TextField>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
