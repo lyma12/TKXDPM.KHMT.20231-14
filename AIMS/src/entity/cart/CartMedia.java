@@ -7,6 +7,7 @@ public class CartMedia {
     private int quantity;
     private int price;
 
+
     public CartMedia(){
 
     }

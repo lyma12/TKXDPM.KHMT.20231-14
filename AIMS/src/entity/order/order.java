@@ -6,6 +6,7 @@ import java.util.List;
 import utils.configs;
 
 
+
 public class order {
 	private int shippingFees;
     private List<orderMedia> lstOrderMedia;
@@ -75,8 +76,8 @@ public class order {
         double amount = 0;
         for (Object object : lstOrderMedia) {
             orderMedia om = (orderMedia) object;
-            amount += om.getPrice();
+            amount += om.getPrice();                          // content coupling
         }
-        return (int) (amount + (configs.PERCENT_VAT/100)*amount);
+        return (int) (amount + (configs.PERCENT_VAT/100)*amount);         // common coupling
     }
 }

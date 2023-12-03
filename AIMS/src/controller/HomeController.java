@@ -7,12 +7,12 @@ import java.util.List;
 import entity.media.Book;
 import entity.media.media;
 import javafx.stage.Stage;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 
 public class HomeController extends BaseController {
 
 	public List<media> getAllMedia() throws SQLException{
-        return new media().getAllMedia();
+        return new media().getAllMedia();                
     }
 	public List<String> getAllTypeMedia() throws SQLException{
 		return new media().getTypeMedia();

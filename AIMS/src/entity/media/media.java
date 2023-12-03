@@ -1,6 +1,5 @@
 package entity.media;
 
-import java.io.Console;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
-
 import entity.db.AIMSDB;
 import utils.utils;
 
