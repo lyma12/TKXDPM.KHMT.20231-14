@@ -23,7 +23,7 @@
     - Chỉ ra các loại coupling cho các phương thức trong controller **HomeController.java**, **ViewCartController.java** và  **views.screen.home**, **views.screen.cart** 
 
 - Công việc chi tiết:
-    - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+    - Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/1]()
     - Mô tả công việc cụ thể:
         - **HomeController.java**
             - Cả 3 phương thức **getAllMedia()**, **getAllTypeMedia()**, **getListMediaByType(String type)** đều sử dụng **data couping** 
