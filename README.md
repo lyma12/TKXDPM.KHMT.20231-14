@@ -22,57 +22,16 @@
 - Assigned tasks:
   - Thực hiện tìm coupling các class: CartMedia, Cart, BaseController, Invoice, order, orderMedia, BaseScreenHandler.
 
-</details>
-
-<details>
-<summary>Trần Văn Long</summary>
-<br>
-
-- Assigned tasks:
-  - Task 1
-  - Task 2
-  - ...
-
 - Implementation details:
-  - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
+  - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/3
   - Specific implementation details:
-    - Describe specific in detail what you did last week
-    - You can attach images if you want
+    - CartMedia: sử dụng content coupling
+    - Cart: sử dụng content coupling
+    - BaseController: sử dụng content coupling, data coupling
+    - Invoice
+    - order: sử dụng content coupling, common coupling
+    - orderMedia: 
+    - BaseScreenHandler
 
 </details>
 
-<details>
-<summary>Nguyễn Đức Long</summary>
-<br>
-
-- Assigned tasks:
-  - Task 1
-  - Task 2
-  - ...
-
-- Implementation details:
-  - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
-  - Specific implementation details:
-    - Describe specific in detail what you did last week
-    - You can attach images if you want
-
-</details>
-
-
-
-<details>
-<summary>Vũ Bá Lượng</summary>
-<br>
-
-- Assigned tasks:
-  - Task 1
-  - Task 2
-  - ...
-
-- Implementation details:
-  - Pull Request(s): [Attach links to your pull requests here. You can attach multiple pull requests]()
-  - Specific implementation details:
-    - Describe specific in detail what you did last week
-    - You can attach images if you want
-
----
