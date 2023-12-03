@@ -1,3 +1,11 @@
+/*
+    Coupling trong class InvoiceScreenHandler:
+	- class Invoice: tương tác với đối tượng của lớp invoice thông qua truyền tham số và truy xuất thuộc tính
+	- class order: tương tác với đối tượng của lớp order thông qua truyền tham số và truy xuất thuộc tính
+	- class PlaceOrderController
+	- class orderMedia: tương tác với đối tượng của lớp order thông qua truyền tham số và truy xuất thuộc tính
+	- class MediaHandler: tương tác với đối tượng của lớp MediaHandler thông qua truyền tham số 
+*/
 package views.screen.invoice;
 
 import java.io.IOException;
@@ -33,8 +41,8 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 	protected Button btn_confirm;
 	protected ListView<MediaHandler> list_view;
 	private HashMap<String, String> messages;
-	private order order;
-	private Invoice invoice;
+	private order order;     //coupling class order
+	private Invoice invoice;     //coupling class invoice
 	
 	public InvoiceScreenHandler(Stage stage, String screenPath, order order, Invoice invoice) throws IOException {
 		super(stage, screenPath);
@@ -75,7 +83,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 			this.getPreviousScreen().show();
 		});
 		try {
-			List<orderMedia> lstMedia = this.order.getlstOrderMedia();
+			List<orderMedia> lstMedia = this.order.getlstOrderMedia();     //coupling class orderMedia
 			for(orderMedia item: lstMedia) {
 				boolean rush_order = false;
 				if(this.order.getLstOrderMediaRushOrder().contains(item)) rush_order = true;
@@ -84,7 +92,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 			}
 			this.list_view.setCellFactory(
 					listView -> new ListCell<MediaHandler>() {
-						public void updateItem(MediaHandler item, boolean empty) {
+						public void updateItem(MediaHandler item, boolean empty) {     //coupling class MediaHandler
 							super.updateItem(item, empty);
 							if(item != null || !empty) {
 								setGraphic(item.getContent());

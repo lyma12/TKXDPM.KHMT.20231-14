@@ -1,3 +1,8 @@
+/*
+    Coupling trong class MediaHandler:
+	- class orderMedia: tương tác với đối tượng của lớp orderMedia thông qua truyền tham số
+	- class PlaceOrderController 
+*/
 package views.screen.invoice;
 
 import java.io.File;
@@ -24,6 +29,7 @@ public class MediaHandler extends FXMLScreenHandler {
 	private orderMedia media;
 	private boolean rush_order = false;
 	
+	//coupling class orderMedia
 	public MediaHandler(String screenPath, orderMedia media, boolean rush_order) throws IOException {
 		super(screenPath);
 		this.image = (ImageView) this.content.lookup("#invoice_item_image");

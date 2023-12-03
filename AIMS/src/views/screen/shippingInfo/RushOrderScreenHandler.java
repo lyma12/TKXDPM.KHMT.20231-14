@@ -1,3 +1,9 @@
+/*
+    Coupling trong class RushOrderScreenHandler:
+    - class order: tương tác với các đối tượng của class order thông qua truyền tham số và truy xuất phương thức
+    - class orderMedia: tương tác với các đối tượng của class orderMedia thông qua truyền tham số và truy xuất phương thức
+	- class RushOrderController
+*/
 package views.screen.shippingInfo;
 
 import java.io.IOException;
