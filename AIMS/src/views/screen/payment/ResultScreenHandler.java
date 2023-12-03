@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 
 public class ResultScreenHandler extends BaseScreenHandler {
 

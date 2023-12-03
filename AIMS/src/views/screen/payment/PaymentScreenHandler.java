@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.configs;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 
 public class PaymentScreenHandler extends BaseScreenHandler {
 

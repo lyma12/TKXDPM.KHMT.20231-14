@@ -21,7 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import utils.utils;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 import views.screen.cart.CartScreenHandler;
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {

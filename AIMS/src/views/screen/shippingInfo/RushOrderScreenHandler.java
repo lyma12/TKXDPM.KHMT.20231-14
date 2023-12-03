@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.configs;
 import utils.utils;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 import views.screen.cart.MediaHandler;
 import entity.order.order;
 import entity.order.orderMedia;

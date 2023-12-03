@@ -17,8 +17,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import utils.utils;
-import view.screen.BaseScreenHandler;
-import view.screen.FXMLScreenHandler;
+import views.screen.BaseScreenHandler;
+import views.screen.FXMLScreenHandler;
 
 public class Group_Media extends FXMLScreenHandler {
 	@FXML 

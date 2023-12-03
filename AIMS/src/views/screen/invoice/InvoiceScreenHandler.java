@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.configs;
 import utils.utils;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 import views.screen.invoice.MediaHandler;
 
 public class InvoiceScreenHandler extends BaseScreenHandler {

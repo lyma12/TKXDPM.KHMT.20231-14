@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import utils.utils;
-import view.screen.FXMLScreenHandler;
+import views.screen.FXMLScreenHandler;
 
 public class RushOrderItem extends FXMLScreenHandler {
 	

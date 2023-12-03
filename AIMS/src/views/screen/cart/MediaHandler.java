@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 
 import common.exception.MediaUpdateException;
 import common.exception.ViewCartException;
-import enity.cart.Cart;
-import enity.cart.CartMedia;
+import entity.cart.Cart;
+import entity.cart.CartMedia;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
@@ -18,7 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import utils.utils;
-import view.screen.FXMLScreenHandler;
+import views.screen.FXMLScreenHandler;
 
 public class MediaHandler extends FXMLScreenHandler {
 	private static Logger LOGGER = utils.getLogger(MediaHandler.class.getName());

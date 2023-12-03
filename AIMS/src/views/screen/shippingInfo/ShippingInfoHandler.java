@@ -26,7 +26,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.configs;
 import utils.utils;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 
 public class ShippingInfoHandler extends BaseScreenHandler{
 	private Logger LOGGER = utils.getLogger(ShippingInfoHandler.class.getName());

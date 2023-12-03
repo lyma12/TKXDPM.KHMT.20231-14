@@ -39,14 +39,13 @@ public class Request {
         String vnp_OrderInfo = "Thanh toan hang hoa";
         String orderType = "140000";
         String vnp_TxnRef = configs.getRandomNumber(8);
-        String vnp_IpAddr = "127.0.0.1";
+        String vnp_IpAddr = null;
         
-		/*try {
+		try {
 			vnp_IpAddr = InetAddress.getLocalHost().toString();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
         String vnp_TmnCode = configs.vnp_TmnCode;
         String locate = "vn";
         Map vnp_Params = new HashMap<>();

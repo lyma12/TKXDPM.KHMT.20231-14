@@ -1,4 +1,4 @@
-package enity.cart;
+package entity.cart;
 
 import entity.media.media;
 

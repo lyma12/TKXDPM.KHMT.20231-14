@@ -13,8 +13,8 @@ import common.exception.PlaceOrderException;
 import common.exception.ViewCartException;
 import controller.PlaceOrderController;
 import controller.ViewCartController;
-import enity.cart.Cart;
-import enity.cart.CartMedia;
+import entity.cart.Cart;
+import entity.cart.CartMedia;
 import entity.order.order;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.utils;
 import utils.configs;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
 
 public class CartScreenHandler extends BaseScreenHandler {

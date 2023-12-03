@@ -17,9 +17,9 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import common.exception.MediaNotAvailableException;
-import enity.cart.Cart;
-import enity.cart.CartMedia;
-import view.screen.FXMLScreenHandler;
+import entity.cart.Cart;
+import entity.cart.CartMedia;
+import views.screen.FXMLScreenHandler;
 
 public class MediaHandler extends FXMLScreenHandler {
 
