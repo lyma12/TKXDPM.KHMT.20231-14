@@ -28,7 +28,7 @@ import views.screen.shippingInfo.ShippingInfoHandler;
 
 public class RushOrderController extends BaseController {
 	private static Logger LOGGER = utils.utils.getLogger(RushOrderController.class.getName());
-	//coupling class orderMedia
+	//data coupling class orderMedia
 	private boolean checkMediaSupportRushOrder(orderMedia media) {
 		return Math.random() < 0.5;
 	}
@@ -36,7 +36,7 @@ public class RushOrderController extends BaseController {
 	public boolean checkDeliveryToRushOrder(order order, HashMap<String, String> message) {
 		String province = message.get("province");
 		if(!configs.PROVINCE_SUPPORT_RUSH_ORDER.contains(province)) return true;
-		//coupling class order
+		//data coupling class order
 		List<orderMedia> lst = order.getlstOrderMedia();
 		for(orderMedia item: lst) {
 			if(checkMediaSupportRushOrder(item)) {
@@ -74,13 +74,13 @@ public class RushOrderController extends BaseController {
 		return false;
 	}
 	
-	public void requestPlaceRushOrder(ShippingInfoHandler shippingScreen) {     //coupling class ShippingInfoHandler
+	public void requestPlaceRushOrder(ShippingInfoHandler shippingScreen) {     //data coupling class ShippingInfoHandler
 		if(checkDeliveryToRushOrder(shippingScreen.getOrder(), shippingScreen.getMessage())) {
 			throw new MediaOrProvinceNotSupportRushOrderException();
 		}
 		try {
 			Stage newStage = new Stage();
-			//coupling class RushOrderScreenHandler
+			//control and data coupling class RushOrderScreenHandler
 			RushOrderScreenHandler rushOrderScreen = new RushOrderScreenHandler(newStage, configs.RUSHORDER_SCREEN_PATH, shippingScreen.getOrder(), shippingScreen.getMessage());
 			rushOrderScreen.setBController(this);
 			rushOrderScreen.setPreviousScreen(shippingScreen);

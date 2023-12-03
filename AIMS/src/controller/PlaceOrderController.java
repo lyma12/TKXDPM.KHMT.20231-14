@@ -39,8 +39,8 @@ import view.screen.BaseScreenHandler;
 public class PlaceOrderController extends BaseController {
 	
 	private static Logger LOGGER = utils.utils.getLogger(PlaceOrderController.class.getName());
-	public void placeOrder(CartScreenHandler cartScreen) throws SQLException{     //coupling class CartScreenHandler
-        Cart.getCart().checkAvailabilityOfProduct();     //coupling class Cart
+	public void placeOrder(CartScreenHandler cartScreen) throws SQLException{     //data coupling class CartScreenHandler
+        Cart.getCart().checkAvailabilityOfProduct();     //control coupling class Cart
         if(Cart.getCart().getListMedia().size() <= 0) throw new ViewCartException();
         try {
             //coupling class ShippingInfoHandler
@@ -62,9 +62,9 @@ public class PlaceOrderController extends BaseController {
 	public order createOrder() throws SQLException{
         order order = new order();
         for (Object object : Cart.getCart().getListMedia()) {
-            //coupling class CartMedia
+            //data coupling class CartMedia
             CartMedia cartMedia = (CartMedia) object;
-            //coupling class orderMedia
+            //data coupling class orderMedia
             orderMedia orderMedia = new orderMedia(cartMedia.getMedia(), 
                                                    cartMedia.getQuantity(), 
                                                    cartMedia.getPrice());    
@@ -84,10 +84,10 @@ public class PlaceOrderController extends BaseController {
         RushOrderController rushOrderController = new RushOrderController();
 		rushOrderController.requestPlaceRushOrder(shippingScreen);
         }
-        //coupling class order
+        //control coupling class order
         order.setDeliveryInfo(info);
-        Invoice invoice = createInvoice(order);     //coupling class Invoice
-        //coupling class InvoiceScreenHandler
+        Invoice invoice = createInvoice(order);     //control coupling class Invoice
+        //control and data coupling class InvoiceScreenHandler
         InvoiceScreenHandler invoiceScreen = new InvoiceScreenHandler(shippingScreen.getStage(), configs.INVOICE_SCREEN_PATH, order, invoice);
         invoiceScreen.setPreviousScreen(shippingScreen);     
 		invoiceScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());
