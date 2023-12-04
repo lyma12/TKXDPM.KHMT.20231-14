@@ -3,9 +3,9 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import enity.cart.Cart;
+import entity.cart.Cart;
 import javafx.stage.Stage;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 
 public class ViewCartController extends BaseController {
 

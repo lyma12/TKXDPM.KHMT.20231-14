@@ -35,4 +35,8 @@ public class PaymentTransaction {
 	public void setResponseCode(int responseCode) {
 		this.responseCode = responseCode;
 	}
+	
+	public static void savePaymentTransaction(PaymentTransaction payment) {
+		return ;
+	}
 }

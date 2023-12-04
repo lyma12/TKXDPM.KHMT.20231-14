@@ -34,7 +34,7 @@ import entity.order.order;
 import entity.order.orderMedia;
 import javafx.stage.Stage;
 import utils.configs;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 
 public class PlaceOrderController extends BaseController {
 	
@@ -151,6 +151,6 @@ public class PlaceOrderController extends BaseController {
     }
 	public void confirmInvoice(InvoiceScreenHandler invoiceScreen) {
 		PaymentController paymentController = new PaymentController();
-		paymentController.requestToPayOrder(invoiceScreen);
+		paymentController.requestToPayOrder(invoiceScreen, invoiceScreen.getInvoice());
 	}
 }

@@ -85,20 +85,20 @@ public class configs {
 
 		// static resource
 		public static final String IMAGE_PATH = "assets/images";
-		public static final String INVOICE_SCREEN_PATH = "/view/fxml/invoice.fxml";
-		public static final String INVOICE_MEDIA_SCREEN_PATH = "/view/fxml/invoice_item.fxml";
-		public static final String PAYMENT_SCREEN_PATH = "/view/fxml/payment.fxml";
-		public static final String RESULT_SCREEN_PATH = "/view/fxml/result.fxml";
-		public static final String SPLASH_SCREEN_PATH = "/view/fxml/splash.fxml";
-		public static final String CART_SCREEN_PATH = "/view/fxml/cart.fxml";
-		public static final String SHIPPING_SCREEN_PATH = "/view/fxml/shippingInfor.fxml";
-		public static final String CART_MEDIA_PATH = "/view/fxml/cart_item.fxml";
-		public static final String HOME_PATH  = "/view/fxml/home.fxml";
-		public static final String HOME_MEDIA_PATH = "/view/fxml/media_group_media.fxml";
-		public static final String POPUP_PATH = "/view/fxml/popup.fxml";
-		public static final String HOME_MEDIA_ITEM = "/view/fxml/item_media.fxml";
-		public static final String RUSHORDER_SCREEN_PATH = "/view/fxml/rush_order_form.fxml";
-		public static final String RUSHORDER_ITEM_SCREEN_PATH = "/view/fxml/rush_order_item.fxml";
+		public static final String INVOICE_SCREEN_PATH = "/views/fxml/invoice.fxml";
+		public static final String INVOICE_MEDIA_SCREEN_PATH = "/views/fxml/invoice_item.fxml";
+		public static final String PAYMENT_SCREEN_PATH = "/views/fxml/payment.fxml";
+		public static final String RESULT_SCREEN_PATH = "/views/fxml/result.fxml";
+		public static final String SPLASH_SCREEN_PATH = "/views/fxml/splash.fxml";
+		public static final String CART_SCREEN_PATH = "/views/fxml/cart.fxml";
+		public static final String SHIPPING_SCREEN_PATH = "/views/fxml/shippingInfor.fxml";
+		public static final String CART_MEDIA_PATH = "/views/fxml/cart_item.fxml";
+		public static final String HOME_PATH  = "/views/fxml/home.fxml";
+		public static final String HOME_MEDIA_PATH = "/views/fxml/media_group_media.fxml";
+		public static final String POPUP_PATH = "/views/fxml/popup.fxml";
+		public static final String HOME_MEDIA_ITEM = "/views/fxml/item_media.fxml";
+		public static final String RUSHORDER_SCREEN_PATH = "/views/fxml/rush_order_form.fxml";
+		public static final String RUSHORDER_ITEM_SCREEN_PATH = "/views/fxml/rush_order_item.fxml";
 
 		public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
 		

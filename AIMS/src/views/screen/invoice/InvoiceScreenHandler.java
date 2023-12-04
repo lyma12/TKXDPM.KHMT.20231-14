@@ -125,8 +125,5 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 	public Invoice getInvoice() {
 		return this.invoice;
 	}
-	public order getOrder() {
-		return this.order;
-	}
 
 }

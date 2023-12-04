@@ -2,7 +2,7 @@ package entity.order;
 
 import entity.media.media;
 
-
+// functional cohesion
 
 public class orderMedia {
 	private media media;

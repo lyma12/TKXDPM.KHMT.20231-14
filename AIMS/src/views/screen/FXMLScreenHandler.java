@@ -1,4 +1,4 @@
-package view.screen;
+package views.screen;
 
 import java.io.File;
 import java.io.IOException;
