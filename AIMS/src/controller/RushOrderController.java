@@ -1,3 +1,11 @@
+/*
+    Coupling trong class RushOrderController:
+    - class order: tương tác với các đối tượng của class order thông qua phương thức getListOrderMedia, addOrderMediaRushOrder, ...
+    - class orderMedia: tương tác với các đối tượng của class orderMedia thông qua truyền tham số
+	- class RushOrderScreenHandler: tương tác với các đối tượng của class RushOrderScreenHandler thông qua truyền tham số, phương
+	                                thức setPreviousScree, setBController, ...
+	- class ShippingInfoHandler: tương tác với các đối tượng của class ShippingInfoHandler thông qua truyền tham số
+*/
 package controller;
 
 import java.io.IOException;
@@ -20,6 +28,7 @@ import views.screen.shippingInfo.ShippingInfoHandler;
 
 public class RushOrderController extends BaseController {
 	private static Logger LOGGER = utils.utils.getLogger(RushOrderController.class.getName());
+	//data coupling class orderMedia
 	private boolean checkMediaSupportRushOrder(orderMedia media) {
 		return Math.random() < 0.5;
 	}
@@ -27,6 +36,7 @@ public class RushOrderController extends BaseController {
 	public boolean checkDeliveryToRushOrder(order order, HashMap<String, String> message) {
 		String province = message.get("province");
 		if(!configs.PROVINCE_SUPPORT_RUSH_ORDER.contains(province)) return true;
+		//data coupling class order
 		List<orderMedia> lst = order.getlstOrderMedia();
 		for(orderMedia item: lst) {
 			if(checkMediaSupportRushOrder(item)) {
@@ -64,12 +74,13 @@ public class RushOrderController extends BaseController {
 		return false;
 	}
 	
-	public void requestPlaceRushOrder(ShippingInfoHandler shippingScreen) {
+	public void requestPlaceRushOrder(ShippingInfoHandler shippingScreen) {     //data coupling class ShippingInfoHandler
 		if(checkDeliveryToRushOrder(shippingScreen.getOrder(), shippingScreen.getMessage())) {
 			throw new MediaOrProvinceNotSupportRushOrderException();
 		}
 		try {
 			Stage newStage = new Stage();
+			//control and data coupling class RushOrderScreenHandler
 			RushOrderScreenHandler rushOrderScreen = new RushOrderScreenHandler(newStage, configs.RUSHORDER_SCREEN_PATH, shippingScreen.getOrder(), shippingScreen.getMessage());
 			rushOrderScreen.setBController(this);
 			rushOrderScreen.setPreviousScreen(shippingScreen);

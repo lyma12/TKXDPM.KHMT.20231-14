@@ -1,3 +1,7 @@
+/*
+    Coupling trong class RushOrderItem:
+    - class orderMedia: tương tác với các đối tượng của class orderMedia thông qua truyền tham số và truy xuất thuộc tính
+*/
 package views.screen.shippingInfo;
 
 import java.io.File;
@@ -21,6 +25,7 @@ public class RushOrderItem extends FXMLScreenHandler {
 	protected Text title;
 	protected CheckBox checkBox;
 
+    //coupling class orderMedia
 	public RushOrderItem(String screenPath, orderMedia media, RushOrderScreenHandler rushOrderScreen) throws IOException {
 		super(screenPath);
 		this.media = media;

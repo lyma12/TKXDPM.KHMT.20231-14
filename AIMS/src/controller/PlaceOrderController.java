@@ -1,3 +1,17 @@
+/*
+    Coupling trong class PlaceOrderController:
+    - class CartScreenHanlder: tương tác với đối tượng của lớp CartScreenHandler thông qua truyền tham số, các phương thức 
+                               getState, getHomeScreenHandler
+    - class InvoiceScreenHandler: tương tác với đối tượng của lớp InvoiceScreenHandler thông qua phương thức khởi tạo, truyền
+                                  tham số, các phương thức setPreviousScreen, setHomeScreenHandler, ...
+    - class ShippingInfoHandler: tương tác với đối tượng của lớp ShippingInfoHandler thông qua phương thức khởi tạo, setScreenTitle,
+                                 setBController, ...
+    - class Cart: tương tác với các đối tượng của class Cart thông qua phương thức getCart, getListMedia, getAvailabilityOfProduct
+    - class CartMedia: tương tác với các đối tượng của class CartMedia thông qua phương thức getMedia, getQuantity, getPrice
+    - class Invoice: tương tác với các đối tượng của class Invoice thông qua phương thức createInvoice
+    - class order: tương tác với các đối tượng của class order thông qua phương thức setDeliveryInfo, createOrder, setOrder, ...
+    - class orderMedia: tương tác với các đối tượng của class orderMedia
+*/
 package controller;
 
 import java.io.IOException;
@@ -25,10 +39,11 @@ import view.screen.BaseScreenHandler;
 public class PlaceOrderController extends BaseController {
 	
 	private static Logger LOGGER = utils.utils.getLogger(PlaceOrderController.class.getName());
-	public void placeOrder(CartScreenHandler cartScreen) throws SQLException{
-        Cart.getCart().checkAvailabilityOfProduct();
+	public void placeOrder(CartScreenHandler cartScreen) throws SQLException{     //data coupling class CartScreenHandler
+        Cart.getCart().checkAvailabilityOfProduct();     //control coupling class Cart
         if(Cart.getCart().getListMedia().size() <= 0) throw new ViewCartException();
         try {
+            //coupling class ShippingInfoHandler
 			ShippingInfoHandler shippingScreenHandler = new ShippingInfoHandler(cartScreen.getStage() , configs.SHIPPING_SCREEN_PATH);
 			shippingScreenHandler.setPreviousScreen(cartScreen);
 			shippingScreenHandler.setHomeScreenHandler(cartScreen.getHomeScreenHandler());
@@ -47,7 +62,9 @@ public class PlaceOrderController extends BaseController {
 	public order createOrder() throws SQLException{
         order order = new order();
         for (Object object : Cart.getCart().getListMedia()) {
+            //data coupling class CartMedia
             CartMedia cartMedia = (CartMedia) object;
+            //data coupling class orderMedia
             orderMedia orderMedia = new orderMedia(cartMedia.getMedia(), 
                                                    cartMedia.getQuantity(), 
                                                    cartMedia.getPrice());    
@@ -67,10 +84,12 @@ public class PlaceOrderController extends BaseController {
         RushOrderController rushOrderController = new RushOrderController();
 		rushOrderController.requestPlaceRushOrder(shippingScreen);
         }
+        //control coupling class order
         order.setDeliveryInfo(info);
-        Invoice invoice = createInvoice(order);
+        Invoice invoice = createInvoice(order);     //control coupling class Invoice
+        //control and data coupling class InvoiceScreenHandler
         InvoiceScreenHandler invoiceScreen = new InvoiceScreenHandler(shippingScreen.getStage(), configs.INVOICE_SCREEN_PATH, order, invoice);
-        invoiceScreen.setPreviousScreen(shippingScreen);
+        invoiceScreen.setPreviousScreen(shippingScreen);     
 		invoiceScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());
 		invoiceScreen.setScreenTitle("Invoice Screen");
 		invoiceScreen.setBController(this);

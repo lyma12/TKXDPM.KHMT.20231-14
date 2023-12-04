@@ -2,7 +2,7 @@
 
 ## Thành viên nhóm
 
-
+=======
 | Name             | Role        |
 | :--------------- | :---------- |
 | Mã Thiên Lý      | Team Leader |
@@ -12,9 +12,6 @@
 
 ## Nội dung báo cáo
 
-<details>
-<<<<<<< HEAD
-  <summary>Week 1: 27/11/2023 - 02/12/2023 </summary>
 <br>
 <details>
 <summary>Mã Thiên Lý</summary>
@@ -35,6 +32,16 @@
     - BaseScreenHandler
 
 </details>
+
+<details>
+  <summary>Nguyễn Đức Long 20194100</summary>
+   - Assigned Task
+     - Tìm coupling trong code liên quan đến đặt hàng
+   - Implementation details
+     - Pull request: https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/2
+     - Specific implementation details: Tìm coupling trong class PlaceOrderController, RushOrderController, views.screen.shippingInfo, views.screen.invoice</p>
+</details> 
+
 <details>
     <summary>Vũ Bá Lượng 20194109</summary>
 <br>
@@ -76,6 +83,4 @@
                 - **setMedia()** sử dụng **data coupling**
                 - **setMediaInfor()** sử dụng cả **data coupling** và **control coupling**
                 - **initializeSpinner()** sử dụng cả **data coupling**, **control coupling** và **content coupling**
-
 </details>
->>>>>>> main

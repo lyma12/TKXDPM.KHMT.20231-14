@@ -1,3 +1,8 @@
+/*
+    Coupling trong class ShippingInfoHandler:
+    - class order: tương tác với các đối tượng của class order thông qua truyền tham số và truy xuất phương thức
+	- class PlaceOrderController
+*/
 package views.screen.shippingInfo;
 
 import java.io.IOException;
@@ -46,7 +51,7 @@ public class ShippingInfoHandler extends BaseScreenHandler{
 	private boolean send = false;
 	
 	protected HashMap<String, String> messages = new HashMap<String, String>();
-	protected order order;
+	protected order order;     //coupling class order
 
 	public ShippingInfoHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
