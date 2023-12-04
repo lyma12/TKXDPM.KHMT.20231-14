@@ -12,6 +12,8 @@
 
 ## Nội dung báo cáo
 
+<details>
+  <summary>W11: 26/11/2023~02/12/2023 </summary>
 <br>
 <details>
 <summary>Mã Thiên Lý</summary>
@@ -85,4 +87,28 @@
                 - **setMedia()** sử dụng **data coupling**
                 - **setMediaInfor()** sử dụng cả **data coupling** và **control coupling**
                 - **initializeSpinner()** sử dụng cả **data coupling**, **control coupling** và **content coupling**
+</details>
+
+</details>
+
+---
+
+<details>
+  <summary>W12: 04/12/2023~10/12/2023 </summary>
+<br>
+<details>
+    <summary>Mã Thiên Lý</summary>
+<br>
+</details>
+<details>
+    <summary>Nguyễn Đức Long 20194100</summary>
+<br>
+</details>
+<details>
+    <summary>Trần Văn Long 20200372</summary>
+<br>
+</details>
+<details>
+    <summary>Vũ Bá Lượng 20194109</summary>
+<br>
 </details>
