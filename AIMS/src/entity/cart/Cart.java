@@ -6,6 +6,7 @@ import java.util.List;
 import common.exception.MediaNotAvailableException;
 import entity.media.media;
 
+//functional cohesion
 
 public class Cart {
 	private List<CartMedia> lstCartMedia;
@@ -40,7 +41,7 @@ public class Cart {
         int total = 0;
         for (Object obj : lstCartMedia) {
             CartMedia cm = (CartMedia) obj;
-            total += cm.getQuantity();
+            total += cm.getQuantity();      // content coupling
         }
         return total;
     }
@@ -49,7 +50,7 @@ public class Cart {
         int total = 0;
         for (Object obj : lstCartMedia) {
             CartMedia cm = (CartMedia) obj;
-            total += cm.getPrice()*cm.getQuantity();
+            total += cm.getPrice()*cm.getQuantity();       // content coupling
         }
         return total;
     }
@@ -58,8 +59,8 @@ public class Cart {
         boolean allAvai = true;
         for (Object object : lstCartMedia) {
             CartMedia cartMedia = (CartMedia) object;
-            int requiredQuantity = cartMedia.getQuantity();
-            int availQuantity = cartMedia.getMedia().getQuantity();
+            int requiredQuantity = cartMedia.getQuantity();          // content coupling
+            int availQuantity = cartMedia.getMedia().getQuantity();     // content coupling
             if (requiredQuantity > availQuantity) allAvai = false;
         }
         if (!allAvai) throw new MediaNotAvailableException("Some media not available");
@@ -67,7 +68,7 @@ public class Cart {
 
     public CartMedia checkMediaInCart(media media){
         for (CartMedia cartMedia : lstCartMedia) {
-            if (cartMedia.getMedia().getId() == media.getId()) return cartMedia;
+            if (cartMedia.getMedia().getId() == media.getId()) return cartMedia;       // content coupling
         }
         return null;
     }

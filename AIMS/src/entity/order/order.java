@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import utils.configs;
 
-
+// functional cohesion
 
 public class order {
 	private int shippingFees;
@@ -51,10 +51,6 @@ public class order {
     public List getlstOrderMedia() {
         return this.lstOrderMedia;
     }
-
-  /*  public void setlstOrderMedia(List<orderMedia> lstOrderMedia) {
-        this.lstOrderMedia = lstOrderMedia;
-    }*/
 
     public void setShippingFees(int shippingFees) {
         this.shippingFees = shippingFees;

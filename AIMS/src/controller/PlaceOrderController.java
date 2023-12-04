@@ -20,7 +20,7 @@ import entity.order.order;
 import entity.order.orderMedia;
 import javafx.stage.Stage;
 import utils.configs;
-import view.screen.BaseScreenHandler;
+import views.screen.BaseScreenHandler;
 
 public class PlaceOrderController extends BaseController {
 	
