@@ -2,6 +2,7 @@ package entity.invoice;
 
 import entity.order.order;
 
+
 public class Invoice {
 	private order order;
     private int amount;
