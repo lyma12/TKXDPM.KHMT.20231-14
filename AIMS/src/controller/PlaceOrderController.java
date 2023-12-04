@@ -132,6 +132,6 @@ public class PlaceOrderController extends BaseController {
     }
 	public void confirmInvoice(InvoiceScreenHandler invoiceScreen) {
 		PaymentController paymentController = new PaymentController();
-		paymentController.requestToPayOrder(invoiceScreen);
+		paymentController.requestToPayOrder(invoiceScreen, invoiceScreen.getInvoice());
 	}
 }

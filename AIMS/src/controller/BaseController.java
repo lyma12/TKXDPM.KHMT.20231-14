@@ -11,9 +11,9 @@ import entity.media.media;
 
 public class BaseController {
 	public CartMedia checkMediaInCart(media media){
-        return Cart.getCart().checkMediaInCart(media); // data coupling, content coupling
+        return Cart.getCart().checkMediaInCart(media); // data coupling
     }
 	public List<CartMedia> getListCartMedia(){
-        return Cart.getCart().getListMedia();            // content coupling
+        return Cart.getCart().getListMedia();            
     }
 }

@@ -6,7 +6,7 @@ module Aexample {
 	requires javafx.graphics;
 	requires javafx.web;
 	
-	exports view.screen to javafx.fxml;
+	exports views.screen to javafx.fxml;
 	exports views.screen.cart to javafx.fxml;
 	
 	opens application to javafx.graphics, javafx.fxml;
