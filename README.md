@@ -34,12 +34,14 @@
 </details>
 
 <details>
-  <summary>Nguyễn Đức Long 20194100</summary>
-   - Assigned Task
-     - Tìm coupling trong code liên quan đến đặt hàng
-   - Implementation details
-     - Pull request: https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/2
-     - Specific implementation details: Tìm coupling trong class PlaceOrderController, RushOrderController, views.screen.shippingInfo, views.screen.invoice</p>
+<summary>Nguyễn Đức Long 20194100</summary>
+<br>
+
+- Assigned Task
+  - Tìm coupling trong code liên quan đến đặt hàng
+- Implementation details
+  - Pull request: https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/2
+  - Specific implementation details: Tìm coupling trong class PlaceOrderController, RushOrderController, views.screen.shippingInfo, views.screen.invoice</p>
 </details> 
 
 <details>
