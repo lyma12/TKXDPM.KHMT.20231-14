@@ -106,13 +106,13 @@
 - Implementation details:
   - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/5
   - Specific implementation details:
-    - CartMedia: sử dụng content coupling
-    - Cart: sử dụng content coupling
-    - BaseController: sử dụng content coupling, data coupling
-    - Invoice
-    - order: sử dụng content coupling, common coupling
-    - orderMedia: 
-    - BaseScreenHandler
+    - CartMedia: functional cohesion
+    - Cart: functional cohesion
+    - BaseController: functional cohesion
+    - Invoice: functional cohesion
+    - order: functional cohesion
+    - orderMedia: functional cohesion
+    - BaseScreenHandler: functional cohesion
 <br>
 </details>  
 <details>
