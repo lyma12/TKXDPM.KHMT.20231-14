@@ -101,7 +101,7 @@
 <br>
 
 - Assigned tasks:
-  - Thực hiện tìm coupling các class: CartMedia, Cart, BaseController, Invoice, order, orderMedia, BaseScreenHandler.
+  - Thực hiện tìm cohesion các class: CartMedia, Cart, BaseController, Invoice, order, orderMedia, BaseScreenHandler.
 
 - Implementation details:
   - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/5
