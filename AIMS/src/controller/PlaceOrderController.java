@@ -39,17 +39,17 @@ import views.screen.BaseScreenHandler;
 public class PlaceOrderController extends BaseController {
 	
 	private static Logger LOGGER = utils.utils.getLogger(PlaceOrderController.class.getName());
-	public void placeOrder(CartScreenHandler cartScreen) throws SQLException{     //data coupling class CartScreenHandler
+	public void placeOrder(BaseScreenHandler cartScreen) throws SQLException{     //data coupling class CartScreenHandler
         Cart.getCart().checkAvailabilityOfProduct();     //control coupling class Cart
         if(Cart.getCart().getListMedia().size() <= 0) throw new ViewCartException();
         try {
+        	order order = createOrder();
             //coupling class ShippingInfoHandler
 			ShippingInfoHandler shippingScreenHandler = new ShippingInfoHandler(cartScreen.getStage() , configs.SHIPPING_SCREEN_PATH);
 			shippingScreenHandler.setPreviousScreen(cartScreen);
 			shippingScreenHandler.setHomeScreenHandler(cartScreen.getHomeScreenHandler());
 			shippingScreenHandler.setScreenTitle("Shipping Screen");
 			shippingScreenHandler.setBController(this);
-			order order = createOrder();
 			shippingScreenHandler.setOrder(order);
 			shippingScreenHandler.show();
 			
@@ -75,20 +75,20 @@ public class PlaceOrderController extends BaseController {
 	public Invoice createInvoice(order order) {
         return new Invoice(order);
     }
-	public void processDeliveryInfo(HashMap<String, String> info, order order, ShippingInfoHandler shippingScreen) throws InterruptedException, IOException{
+	public void processDeliveryInfo(HashMap<String, String> info, order order, BaseScreenHandler shippingScreen) throws InterruptedException, IOException{
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
         validateDeliveryInfo(info);
-        order.setShippingFees(calculateShippingFee(order, shippingScreen.getMessage()));
+        order.setShippingFees(calculateShippingFee(order, info));
         if(info.get("rush_order") == "true") {
         RushOrderController rushOrderController = new RushOrderController();
-		rushOrderController.requestPlaceRushOrder(shippingScreen);
+		rushOrderController.requestPlaceRushOrder(shippingScreen, order, info);
         }
         //control coupling class order
         order.setDeliveryInfo(info);
         Invoice invoice = createInvoice(order);     //control coupling class Invoice
         //control and data coupling class InvoiceScreenHandler
-        InvoiceScreenHandler invoiceScreen = new InvoiceScreenHandler(shippingScreen.getStage(), configs.INVOICE_SCREEN_PATH, order, invoice);
+        InvoiceScreenHandler invoiceScreen = new InvoiceScreenHandler(shippingScreen.getStage(), configs.INVOICE_SCREEN_PATH, invoice);
         invoiceScreen.setPreviousScreen(shippingScreen);     
 		invoiceScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());
 		invoiceScreen.setScreenTitle("Invoice Screen");
@@ -149,8 +149,9 @@ public class PlaceOrderController extends BaseController {
         LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);
         return fees;
     }
-	public void confirmInvoice(InvoiceScreenHandler invoiceScreen) {
+	public void confirmInvoice(BaseScreenHandler invoiceScreen, Invoice invoice) {
 		PaymentController paymentController = new PaymentController();
-		paymentController.requestToPayOrder(invoiceScreen, invoiceScreen.getInvoice());
+		paymentController.requestToPayOrder(invoiceScreen, invoice);
+		
 	}
 }

@@ -49,7 +49,7 @@ public class PaymentController extends BaseController {
 			e.printStackTrace();
 		}
 	}
-	public Map<String, String> processOrderPayMent(Map<String, String> response, PaymentScreenHandler paymentScreen) {
+	public Map<String, String> processOrderPayMent(Map<String, String> response) {
 		String contents = response.get("contents");
 		this.card = new Card(response.get("cardNumber"), response.get("cardHolderName"), response.get("expirationDate"), response.get("securityCode"));
 		// interBondary payOrder
@@ -58,6 +58,8 @@ public class PaymentController extends BaseController {
 			PaymentTransaction payment = this.interbank.payOrder(this.card, this.invoice.getAmount(), contents);
 			response.put("RESULT", "Giao dịch thành công!");
 			response.put("MESSAGE", "Đơn hàng sẽ phê duyệt để chuyển đi!");
+			order.saveOrder(invoice.getOrder());
+			Cart.getCart().emptyCart();
 			PaymentTransaction.savePaymentTransaction(payment);
 		}catch(InternalServerErrorException e) {
 			response.put("RESULT", "Giao dịch thất bại!");
@@ -77,8 +79,4 @@ public class PaymentController extends BaseController {
 		return response;
 		
 	}
-
-	public void emptyCart(){
-        Cart.getCart().emptyCart();
-    }
 }
