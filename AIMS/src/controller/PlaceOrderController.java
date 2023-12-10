@@ -45,16 +45,16 @@ public class PlaceOrderController extends BaseController {
         try {
             //coupling class ShippingInfoHandler
 			ShippingInfoHandler shippingScreenHandler = new ShippingInfoHandler(cartScreen.getStage() , configs.SHIPPING_SCREEN_PATH);
-			shippingScreenHandler.setPreviousScreen(cartScreen);
+			shippingScreenHandler.setPreviousScreen(cartScreen);    //commuication cohesion
 			shippingScreenHandler.setHomeScreenHandler(cartScreen.getHomeScreenHandler());
 			shippingScreenHandler.setScreenTitle("Shipping Screen");
 			shippingScreenHandler.setBController(this);
 			order order = createOrder();
-			shippingScreenHandler.setOrder(order);
+			shippingScreenHandler.setOrder(order);    //sequential cohesion
 			shippingScreenHandler.show();
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace();    //coincidental cohesion
 		}
         
     }
@@ -68,11 +68,11 @@ public class PlaceOrderController extends BaseController {
             orderMedia orderMedia = new orderMedia(cartMedia.getMedia(), 
                                                    cartMedia.getQuantity(), 
                                                    cartMedia.getPrice());    
-            order.getlstOrderMedia().add(orderMedia);
+            order.getlstOrderMedia().add(orderMedia);    //sequential cohesion
         }
         return order;
     }
-	public Invoice createInvoice(order order) {
+	public Invoice createInvoice(order order) {    //functional cohesion
         return new Invoice(order);
     }
 	public void processDeliveryInfo(HashMap<String, String> info, order order, ShippingInfoHandler shippingScreen) throws InterruptedException, IOException{
@@ -89,14 +89,14 @@ public class PlaceOrderController extends BaseController {
         Invoice invoice = createInvoice(order);     //control coupling class Invoice
         //control and data coupling class InvoiceScreenHandler
         InvoiceScreenHandler invoiceScreen = new InvoiceScreenHandler(shippingScreen.getStage(), configs.INVOICE_SCREEN_PATH, order, invoice);
-        invoiceScreen.setPreviousScreen(shippingScreen);     
+        invoiceScreen.setPreviousScreen(shippingScreen);    //comunication cohesion
 		invoiceScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());
 		invoiceScreen.setScreenTitle("Invoice Screen");
 		invoiceScreen.setBController(this);
 		invoiceScreen.show();
         //show invoice
     }
-	public int getCartSubtotal(){
+	public int getCartSubtotal(){    //functional cohesion
         int subtotal = Cart.getCart().calSubtotal();
         return subtotal;
     }
@@ -134,7 +134,7 @@ public class PlaceOrderController extends BaseController {
      * trong trường hợp giao hàng nhanh, khách trả thêm 10.000 VND với mỗi sản phẩm giao hàng nhanh.
      * ( vì các sản phẩm trong aims là sách, cd, dvd nên khối lượng sản phẩm lớn nhất coi như không quá 0.5 kg.)
      * */
-	public int calculateShippingFee(order order, HashMap<String, String> deliveryForm ){
+	public int calculateShippingFee(order order, HashMap<String, String> deliveryForm ){    //functional cohesion
   		int fees = 0;
 		
 		// đơn hàng có tổng tiền sản phẩm trên 100 NVND sẽ được miễn phí.
@@ -149,7 +149,7 @@ public class PlaceOrderController extends BaseController {
         LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);
         return fees;
     }
-	public void confirmInvoice(InvoiceScreenHandler invoiceScreen) {
+	public void confirmInvoice(InvoiceScreenHandler invoiceScreen) {    //functional cohesion
 		PaymentController paymentController = new PaymentController();
 		paymentController.requestToPayOrder(invoiceScreen, invoiceScreen.getInvoice());
 	}
