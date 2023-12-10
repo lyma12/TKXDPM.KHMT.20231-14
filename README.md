@@ -153,6 +153,19 @@
 </details>
 <details>
     <summary>Trần Văn Long 20200372</summary>
+- Assigned tasks: thực hiện tìm và phân loại cohesion các class liên quan đến thanh toán: PaymentController, các class trong VNPaySubsystem, InternetBankingInterface, views.screen.payment
+  
+
+- Implementation details:
+    - Pull Request(s): 
+    - Specific implementation details:
+        - VNPaySubsystemController: communicational cohesion
+        - VNPaySubsystem.Request: không
+        - PaymentController: functional cohesion
+        - PaymentScreenHandler: informational cohesion
+        - ResultScreenHandler: coincidental cohension
+        - InternetBankingInterface: không
+
 <br>
 </details>
 <details>

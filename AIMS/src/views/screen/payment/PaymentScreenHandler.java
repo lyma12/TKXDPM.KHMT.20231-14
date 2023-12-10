@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import utils.configs;
 import views.screen.BaseScreenHandler;
 
+// informational cohesion
+
 public class PaymentScreenHandler extends BaseScreenHandler {
 
 	private Button btnConfirmPayment;

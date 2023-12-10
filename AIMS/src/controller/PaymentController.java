@@ -30,6 +30,7 @@ import views.screen.invoice.InvoiceScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
 import views.screen.payment.ResultScreenHandler;
 
+// functional cohesion
 public class PaymentController extends BaseController {
 	private Card card;
 	private InterBankingInterface interbank;
