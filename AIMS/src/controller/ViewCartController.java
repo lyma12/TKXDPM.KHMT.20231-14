@@ -9,11 +9,12 @@ import views.screen.BaseScreenHandler;
 
 public class ViewCartController extends BaseController {
 
-	public void checkAvailabilityOfProduct() throws SQLException{
-		
+    public void checkAvailabilityOfProduct() throws SQLException { // functional cohesion
+
         Cart.getCart().checkAvailabilityOfProduct();
     }
-	public int getCartSubtotal(){
+
+    public int getCartSubtotal() { // functional cohesion
         int subtotal = Cart.getCart().calSubtotal();
         return subtotal;
     }

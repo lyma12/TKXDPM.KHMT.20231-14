@@ -158,4 +158,34 @@
 <details>
     <summary>Vũ Bá Lượng 20194109</summary>
 <br>
+
+- Nhiệm vụ bài tập:
+    - Chỉ ra các loại cohesion cho các phương thức trong controller **HomeController.java**, **ViewCartController.java** và  **views.screen.home**, **views.screen.cart** 
+
+- Công việc chi tiết:
+    - Pull Request(s): []()
+    - Mô tả công việc cụ thể:
+        - **HomeController.java** 
+            - Cả 3 phương thức **getAllMedia()**, **getAllTypeMedia()**, **getListMediaByType(String type)** đều sử dụng **functional cohesion** 
+        - **ViewCartController**
+            - Phương thức **checkAvailabilityOfProduct()**, **getCartSubtotal()** đều sử dụng **functional cohesion**
+        - **views.screen.home**
+            - **Group_Media.java**
+                - **Group_Media()** sử dụng **procedural cohesion**
+                - **setGroupInfor()** chủ yếu sử dụng **functional cohesion**
+            - **HomeScreenHandler.java** và **MediaHandler.java** đều sử dụng **functional cohesion**
+        - **views.screen.cart**
+            - **CartScreenHandler.java**
+                - **CartScreenHandler()** sử dụng **Logical Cohesion**
+                - **requestToPlaceOrder()** sử dụng **Procedural Cohesion**
+                - **getBController()** sử dụng **Functional Cohesion**
+                - **requestToViewCart()** sử dụng **Procedural Cohesion**
+                - **displayCart()** sử dụng **Procedural Cohesion**
+                - **updateCart()** sử dụng **Functional Cohesion**
+                - **updateCartAmount()** sử dụng **Procedural Cohesion**
+            - **MediaHandler.java**
+                - **MediaHandler()** sử dụng **Functional Cohesion**
+                - **setMedia()** sử dụng **Functional Cohesion**
+                - **setMediaInfor()** sử dụng **Procedural Cohesion**
+                - **initializeSpinner()** sử dụng **Procedural Cohesion**
 </details>
