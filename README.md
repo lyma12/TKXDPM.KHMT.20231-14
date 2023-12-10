@@ -122,7 +122,7 @@
 - Chỉ ra các loại cohesion cho các phương thức trong controller **PlaceOrderController.java**, **RushOrderController.java**
 
     - Công việc chi tiết:
-- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/6]()
+- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/7]()
     - Mô tả công việc cụ thể:
         - **PlaceOrderController.java**
             - phương thức **placeOrder** 
