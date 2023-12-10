@@ -122,7 +122,7 @@
 - Chỉ ra các loại cohesion cho các phương thức trong controller **PlaceOrderController.java**, **RushOrderController.java**
 
     - Công việc chi tiết:
-- Pull Request(s): []()
+- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/7]()
     - Mô tả công việc cụ thể:
         - **PlaceOrderController.java**
             - phương thức **placeOrder** 
@@ -147,6 +147,8 @@
                 - phương thức **setBController**, **setPreviousScreen**, **setHomeScreenHandler**, **setScreenTitle**, **showAndWait**: communication cohesion vì cùng hoạt động trên 1 dữ liệu là rushOrderScreen
                 - phương thức **printStackTrace**: liên kết theo loại coincidental cohesion vì chúng chỉ có tác dụng nhằm debug
             - Phương thức **calculateShippingFee**: functional cohesion
+        - **views.screen.invoice**: đều là functional cohesion
+        - **views.screen.shippingInfo**: đều là functional cohesion
 <br>
 </details>
 <details>
