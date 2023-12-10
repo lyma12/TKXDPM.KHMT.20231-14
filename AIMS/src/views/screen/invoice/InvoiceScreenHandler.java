@@ -41,10 +41,9 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 	protected Button btn_confirm;
 	protected ListView<MediaHandler> list_view;
 	private HashMap<String, String> messages;
-	private order order;     //coupling class order
 	private Invoice invoice;     //coupling class invoice
 	
-	public InvoiceScreenHandler(Stage stage, String screenPath, order order, Invoice invoice) throws IOException {
+	public InvoiceScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
 		super(stage, screenPath);
 		this.invoice_name = (Text) this.content.lookup("#invoice_name");
 		this.invoice_phone = (Text) this.content.lookup("#invoice_phone");
@@ -57,8 +56,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 		this.list_view = (ListView<MediaHandler>) this.content.lookup("#list_view");
 		this.shipping_note = (Text) this.content.lookup("#shipping_note");
 		this.btn_confirm = (Button) this.content.lookup("#btn_confirm");
-		this.messages = order.getDeliveryInfo();
-		this.order = order;
+		this.messages = invoice.getOrder().getDeliveryInfo();
 		this.invoice = invoice;
 		setInvoice();
 	}
@@ -71,22 +69,18 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 		if(this.messages.get("instructions") != null && this.messages.get("instructions") != "") tmp += this.messages.get("instructions") + ".";
 		if(this.messages.get("rush_order") == "true") tmp += this.messages.get("district");
 		this.invoice_intructions.setText(tmp);
-		int subtotal = this.order.getAmount();
-		int shipping_fees = this.order.getShippingFees();
-		int total = subtotal + shipping_fees;
-		this.invoice.setAmount(total);
-		this.invoice_subtotal.setText(utils.getCurrencyFormat(subtotal));
-		this.invoice_shipping_fees.setText(utils.getCurrencyFormat(shipping_fees));
-		this.invoice_total.setText(utils.getCurrencyFormat(total));
+		this.invoice_subtotal.setText(utils.getCurrencyFormat(this.invoice.getOrder().getAmount()));
+		this.invoice_shipping_fees.setText(utils.getCurrencyFormat(this.invoice.getOrder().getShippingFees()));
+		this.invoice_total.setText(utils.getCurrencyFormat(this.invoice.getAmount()));
 		this.btn_confirm.setOnMouseClicked(e -> this.confirmInvoice());
 		this.btn_return.setOnMouseClicked(e ->{
 			this.getPreviousScreen().show();
 		});
 		try {
-			List<orderMedia> lstMedia = this.order.getlstOrderMedia();     //coupling class orderMedia
+			List<orderMedia> lstMedia = this.invoice.getOrder().getlstOrderMedia();     //coupling class orderMedia
 			for(orderMedia item: lstMedia) {
 				boolean rush_order = false;
-				if(this.order.getLstOrderMediaRushOrder().contains(item)) rush_order = true;
+				if(this.invoice.getOrder().getLstOrderMediaRushOrder().contains(item)) rush_order = true;
 				MediaHandler invoiceItem = new MediaHandler(configs.INVOICE_MEDIA_SCREEN_PATH, item, rush_order);
 				this.list_view.getItems().add(invoiceItem);
 			}
@@ -120,10 +114,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 		return (PlaceOrderController) super.getBController();
 	}
 	public void confirmInvoice() {
-		this.getBController().confirmInvoice(this);
-	}
-	public Invoice getInvoice() {
-		return this.invoice;
+		this.getBController().confirmInvoice(this, this.invoice);
 	}
 
 }

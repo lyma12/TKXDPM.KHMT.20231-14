@@ -8,27 +8,20 @@ public class Invoice {
 	private order order;
     private int amount;
     
-    public Invoice(){
-
-    }
-
     public Invoice(order order){
         this.order = order;
+        this.amount = this.order.getAmount() + this.order.getShippingFees();
     }
-
     public order getOrder() {
         return order;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public int getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public void saveInvoice(){
         
     }
+    
 }

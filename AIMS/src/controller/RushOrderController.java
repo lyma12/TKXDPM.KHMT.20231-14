@@ -23,6 +23,7 @@ import entity.order.orderMedia;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import utils.configs;
+import views.screen.BaseScreenHandler;
 import views.screen.shippingInfo.RushOrderScreenHandler;
 import views.screen.shippingInfo.ShippingInfoHandler;
 
@@ -46,7 +47,7 @@ public class RushOrderController extends BaseController {
 		if(order.getLstOrderMediaRushOrder().size() <= 0) return true;
 		return false;
 	}
-	public void validateDeliveryInfo(HashMap<String, String> info, RushOrderScreenHandler rushOrderScreen) throws InterruptedException, IOException{
+	public void validateDeliveryInfo(HashMap<String, String> info, BaseScreenHandler rushOrderScreen) throws InterruptedException, IOException{
     	if(validateDistrict(info.get("district"))) throw new InvalidDeliveryInfoException();
     	else if(validateHours(info.get("hour"), info.get("minute"), info.get("AMP"))) throw new InvalidDeliveryInfoException();
     	else rushOrderScreen.getStage().close();
@@ -74,8 +75,8 @@ public class RushOrderController extends BaseController {
 		return false;
 	}
 	
-	public void requestPlaceRushOrder(ShippingInfoHandler shippingScreen) {     //data coupling class ShippingInfoHandler
-		if(checkDeliveryToRushOrder(shippingScreen.getOrder(), shippingScreen.getMessage())) {
+	public void requestPlaceRushOrder(BaseScreenHandler shippingScreen, order order, HashMap<String, String> message) {     //data coupling class ShippingInfoHandler
+		if(checkDeliveryToRushOrder(order, message)) {
 			throw new MediaOrProvinceNotSupportRushOrderException();
 		}
 		try {
