@@ -148,7 +148,7 @@
                 - phương thức **printStackTrace**: liên kết theo loại coincidental cohesion vì chúng chỉ có tác dụng nhằm debug
             - Phương thức **calculateShippingFee**: functional cohesion
         - **views.screen.invoice**: đều là functional cohesion
-        - **views.screen.shippingInfo**: đều là fucntional cohesion
+        - **views.screen.shippingInfo**: đều là functional cohesion
 <br>
 </details>
 <details>
