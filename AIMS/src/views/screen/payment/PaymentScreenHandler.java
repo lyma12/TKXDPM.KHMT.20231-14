@@ -46,7 +46,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		btnConfirmPayment.setOnMouseClicked(e -> {
 			try {
 				confirmToPayOrder();
-				((PaymentController) getBController()).emptyCart();
 			} catch (Exception exp) {
 				System.out.println(exp.getStackTrace());
 			}
@@ -64,7 +63,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		response.put("cardHolderName", this.holderName.getText());
 		response.put("expirationDate", this.expirationDate.getText());
 		response.put("securityCode", this.securityCode.getText());
-		response = this.getBController().processOrderPayMent(response, this);
+		response = this.getBController().processOrderPayMent(response);
 		
 		BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE") );
 		resultScreen.setPreviousScreen(this);

@@ -97,9 +97,24 @@
   <summary>W12: 04/12/2023~10/12/2023 </summary>
 <br>
 <details>
-    <summary>Mã Thiên Lý</summary>
+<summary>Mã Thiên Lý</summary>
 <br>
-</details>
+
+- Assigned tasks:
+  - Thực hiện tìm cohesion các class: CartMedia, Cart, BaseController, Invoice, order, orderMedia, BaseScreenHandler.
+
+- Implementation details:
+  - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/5
+  - Specific implementation details:
+    - CartMedia: functional cohesion
+    - Cart: functional cohesion
+    - BaseController: functional cohesion
+    - Invoice: functional cohesion
+    - order: functional cohesion
+    - orderMedia: functional cohesion
+    - BaseScreenHandler: functional cohesion
+<br>
+</details>  
 <details>
     <summary>Nguyễn Đức Long 20194100</summary>
 

@@ -39,10 +39,11 @@ import views.screen.BaseScreenHandler;
 public class PlaceOrderController extends BaseController {
 	
 	private static Logger LOGGER = utils.utils.getLogger(PlaceOrderController.class.getName());
-	public void placeOrder(CartScreenHandler cartScreen) throws SQLException{     //data coupling class CartScreenHandler
+	public void placeOrder(BaseScreenHandler cartScreen) throws SQLException{     //data coupling class CartScreenHandler
         Cart.getCart().checkAvailabilityOfProduct();     //control coupling class Cart
         if(Cart.getCart().getListMedia().size() <= 0) throw new ViewCartException();
         try {
+        	order order = createOrder();
             //coupling class ShippingInfoHandler
 			ShippingInfoHandler shippingScreenHandler = new ShippingInfoHandler(cartScreen.getStage() , configs.SHIPPING_SCREEN_PATH);
 			shippingScreenHandler.setPreviousScreen(cartScreen);    //commuication cohesion
@@ -75,14 +76,14 @@ public class PlaceOrderController extends BaseController {
 	public Invoice createInvoice(order order) {    //functional cohesion
         return new Invoice(order);
     }
-	public void processDeliveryInfo(HashMap<String, String> info, order order, ShippingInfoHandler shippingScreen) throws InterruptedException, IOException{
+	public void processDeliveryInfo(HashMap<String, String> info, order order, BaseScreenHandler shippingScreen) throws InterruptedException, IOException{
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
         validateDeliveryInfo(info);
-        order.setShippingFees(calculateShippingFee(order, shippingScreen.getMessage()));
+        order.setShippingFees(calculateShippingFee(order, info));
         if(info.get("rush_order") == "true") {
         RushOrderController rushOrderController = new RushOrderController();
-		rushOrderController.requestPlaceRushOrder(shippingScreen);
+		rushOrderController.requestPlaceRushOrder(shippingScreen, order, info);
         }
         //control coupling class order
         order.setDeliveryInfo(info);
@@ -151,6 +152,7 @@ public class PlaceOrderController extends BaseController {
     }
 	public void confirmInvoice(InvoiceScreenHandler invoiceScreen) {    //functional cohesion
 		PaymentController paymentController = new PaymentController();
-		paymentController.requestToPayOrder(invoiceScreen, invoiceScreen.getInvoice());
+		paymentController.requestToPayOrder(invoiceScreen, invoice);
+		
 	}
 }

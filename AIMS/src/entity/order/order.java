@@ -59,7 +59,6 @@ public class order {
     public int getShippingFees() {
         return shippingFees;
     }
-
     public HashMap<String, String> getDeliveryInfo() {
         return deliveryInfo;
     }
@@ -75,5 +74,9 @@ public class order {
             amount += om.getPrice();                          // content coupling
         }
         return (int) (amount + (configs.PERCENT_VAT/100)*amount);         // common coupling
+    }
+    
+    public static void saveOrder(order order) {
+    	
     }
 }
