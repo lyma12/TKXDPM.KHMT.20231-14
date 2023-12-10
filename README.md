@@ -163,7 +163,7 @@
     - Chỉ ra các loại cohesion cho các phương thức trong controller **HomeController.java**, **ViewCartController.java** và  **views.screen.home**, **views.screen.cart** 
 
 - Công việc chi tiết:
-    - Pull Request(s): []()
+    - Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/8]()
     - Mô tả công việc cụ thể:
         - **HomeController.java** 
             - Cả 3 phương thức **getAllMedia()**, **getAllTypeMedia()**, **getListMediaByType(String type)** đều sử dụng **functional cohesion** 
