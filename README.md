@@ -157,7 +157,7 @@
   
 
 - Implementation details:
-    - Pull Request(s): 
+    - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/9
     - Specific implementation details:
         - VNPaySubsystemController: communicational cohesion
         - VNPaySubsystem.Request: không
