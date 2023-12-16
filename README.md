@@ -202,9 +202,10 @@
                 - **setMediaInfor()** sử dụng **Procedural Cohesion**
                 - **initializeSpinner()** sử dụng **Procedural Cohesion**
 </details>
+</details>
 
 <details>
-  <summary>W11: 26/11/2023~02/12/2023 </summary>
+  <summary>W13: 11/12/2023~17/12/2023 </summary>
 <br>
 <details>
     <summary>Nguyễn Đức Long 20194100</summary>
