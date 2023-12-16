@@ -47,6 +47,8 @@ public class RushOrderController extends BaseController {
 		if(order.getLstOrderMediaRushOrder().size() <= 0) return true;
 		return false;
 	}
+
+	//separate validateDeliveryInfo and all its subs method to another class to avoid SRP 
 	public void validateDeliveryInfo(HashMap<String, String> info, BaseScreenHandler rushOrderScreen) throws InterruptedException, IOException{
     	if(validateDistrict(info.get("district"))) throw new InvalidDeliveryInfoException();
     	else if(validateHours(info.get("hour"), info.get("minute"), info.get("AMP"))) throw new InvalidDeliveryInfoException();

@@ -60,6 +60,7 @@ public class PlaceOrderController extends BaseController {
         
     }
 	
+    //bring this method to order.java to avoid SRP
 	public order createOrder() throws SQLException{
         order order = new order();
         for (Object object : Cart.getCart().getListMedia()) {
@@ -97,10 +98,14 @@ public class PlaceOrderController extends BaseController {
 		invoiceScreen.show();
         //show invoice
     }
+
+    //unnecessary method in class
 	public int getCartSubtotal(){    //functional cohesion
         int subtotal = Cart.getCart().calSubtotal();
         return subtotal;
     }
+
+    //separate validateDeliveryInfo and all its subs method to another class to avoid SRP 
 	private void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
     	if(!validateName(info.get("name"))) throw new InvalidDeliveryInfoException("name", "invalid");
     	if(!validatePhoneNumber(info.get("phone"))) throw new InvalidDeliveryInfoException("phone", "invalid");

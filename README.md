@@ -202,3 +202,25 @@
                 - **setMediaInfor()** sử dụng **Procedural Cohesion**
                 - **initializeSpinner()** sử dụng **Procedural Cohesion**
 </details>
+
+<details>
+  <summary>W11: 26/11/2023~02/12/2023 </summary>
+<br>
+<details>
+    <summary>Nguyễn Đức Long 20194100</summary>
+
+    - Nhiệm vụ bài tập: 
+- Chỉ ra các vi phạm liên quan tới quy tắc thiết kế SRP và đề xuất chỉnh sửa
+
+    - Công việc chi tiết:
+- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/7]()
+    - Mô tả công việc cụ thể:
+        - **PlaceOrderController.java**
+            - phương thức **validateDeliveryInfo** nên tách riêng ra 1 class khác (**validateDeliveryInfo.java**) cùng với các phương thức con của nó (**validatePhoneNumber, validateName, validateAddress**) được khai báo bên trong. Mục đính là để tránh việc kiểm tra thông tin vận chuyển thực thi trong class PlaceController, vì nếu có thay đổi trong logic kiểm tra thông tin thì class PlaceOrderController cũng sẽ phải thay đổi một cách không đáng có (vi phạm nguyên tắc thiết kế SRP)
+            - phương thức **createOrder** nên đưa vào trong class **order.java** để tránh việc khai báo logic thực thi việc tạo order trong class PlaceOrderController sẽ gây ra vi phậm nguyên tắc thiết kế SRP (cách xử lý đề xuất sẽ tương tự như phương thức **createInvoice**)
+            - phương thức **getCartSubtotal**: chỉ được khai báo mà không hỗ trợ bất kì điều gì tới logic trong class PlaceOrderController. Vì vậy nên bỏ nó đi ở class này và khai báo trong class nào thực sự cần sử dụng tới phương thức này (dựa vào entity Cart để gọi phương thức xử lý tương ứng)
+        - **RushOrderController.java**
+            - phương thức **validateDeliveryInfo** nên tách riêng ra 1 class khác (**validateDeliveryInfo.java**) cùng với các phương thức con của nó (**validateDistrict, validateHour**) được khai báo bên trong. Mục đính là để tránh việc kiểm tra thông tin vận chuyển nhanh thực thi trong class RushOrderController, vì nếu có thay đổi trong logic kiểm tra thông tin thì class RushOrderController cũng sẽ phải thay đổi một cách không đáng có (vi phạm nguyên tắc thiết kế SRP)
+<br>
+</details>
+</details>
