@@ -143,7 +143,7 @@ public class media {
         this.id = id;
         return this;
     }
-
+    
     public String getTitle() {
         return this.title;
     }
