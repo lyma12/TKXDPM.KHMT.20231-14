@@ -214,7 +214,7 @@
 - Chỉ ra các vi phạm liên quan tới quy tắc thiết kế SRP và đề xuất chỉnh sửa
 
     - Công việc chi tiết:
-- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/7]()
+- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/10]()
     - Mô tả công việc cụ thể:
         - **PlaceOrderController.java**
             - phương thức **validateDeliveryInfo** nên tách riêng ra 1 class khác (**validateDeliveryInfo.java**) cùng với các phương thức con của nó (**validatePhoneNumber, validateName, validateAddress**) được khai báo bên trong. Mục đính là để tránh việc kiểm tra thông tin vận chuyển thực thi trong class PlaceController, vì nếu có thay đổi trong logic kiểm tra thông tin thì class PlaceOrderController cũng sẽ phải thay đổi một cách không đáng có (vi phạm nguyên tắc thiết kế SRP)
