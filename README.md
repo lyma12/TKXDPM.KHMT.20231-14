@@ -228,7 +228,7 @@
 
 ----
 <details>
-  <summary>W11: 03/12/2023~17/12/2023 </summary>
+  <summary>W11: 11/12/2023~17/12/2023 </summary>
 <br>
 <details>
 <summary>Mã Thiên Lý</summary>
@@ -239,7 +239,10 @@
   - Nếu có hãy sửa 
 
 - Implementation details:
-  - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/3
+  - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/11
   - Specific implementation details:
+    + Không tìm được vi phạm nguyên tắc LSP
+    + Các đối tượng của class con như paymentcontroller, placeordercontroller, viewcartcontroller, rushordercontroller, homecontroller có thể thay thể đối tượng lớp cha basecontroller mà không làm mất đi tính đúng đúng của chương trình.
+    + Tương tự đối với các class con của baseScreenHandler.
 
 </details>
