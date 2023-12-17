@@ -16,6 +16,7 @@ public class VNPaySubsystemController {
 	private VNPayBoundary vnpBoudary;
 	private PaymentTransaction paymentTransaction;
 	
+	// communicational cohesion
 	public VNPaySubsystemController(VNPayBoundary vnp) {
 		super();
 		this.vnpBoudary = vnp;

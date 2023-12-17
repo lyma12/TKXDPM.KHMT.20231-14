@@ -55,13 +55,15 @@ public class PlaceOrderController extends BaseController {
 			shippingScreenHandler.setOrder(order);
 //			shippingScreenHandler.show();
 			this.display(shippingScreenHandler, cartScreen, "Shipping Screen");
+
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace();    //coincidental cohesion
 		}
         
     }
 	
+    //bring this method to order.java to avoid SRP
 	public order createOrder() throws SQLException{
         order order = new order();
         for (Object object : Cart.getCart().getListMedia()) {
@@ -71,11 +73,11 @@ public class PlaceOrderController extends BaseController {
             orderMedia orderMedia = new orderMedia(cartMedia.getMedia(), 
                                                    cartMedia.getQuantity(), 
                                                    cartMedia.getPrice());    
-            order.getlstOrderMedia().add(orderMedia);
+            order.getlstOrderMedia().add(orderMedia);    //sequential cohesion
         }
         return order;
     }
-	public Invoice createInvoice(order order) {
+	public Invoice createInvoice(order order) {    //functional cohesion
         return new Invoice(order);
     }
 	public void processDeliveryInfo(HashMap<String, String> info, order order, BaseScreenHandler shippingScreen) throws InterruptedException, IOException{
@@ -98,13 +100,18 @@ public class PlaceOrderController extends BaseController {
 //		invoiceScreen.setScreenTitle("Invoice Screen");
 //		invoiceScreen.setBController(this);
 //		invoiceScreen.show();
+
         //show invoice
         this.display(shippingScreen, invoiceScreen, "Invoice Screen");
     }
-	public int getCartSubtotal(){
+
+    //unnecessary method in class
+	public int getCartSubtotal(){    //functional cohesion
         int subtotal = Cart.getCart().calSubtotal();
         return subtotal;
     }
+
+    //separate validateDeliveryInfo and all its subs method to another class to avoid SRP 
 	private void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
     	if(!validateName(info.get("name"))) throw new InvalidDeliveryInfoException("name", "invalid");
     	if(!validatePhoneNumber(info.get("phone"))) throw new InvalidDeliveryInfoException("phone", "invalid");
@@ -167,7 +174,7 @@ public class PlaceOrderController extends BaseController {
         LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);
         return fees;
     }
-	public void confirmInvoice(BaseScreenHandler invoiceScreen, Invoice invoice) {
+	public void confirmInvoice(InvoiceScreenHandler invoiceScreen) {    //functional cohesion
 		PaymentController paymentController = new PaymentController();
 		paymentController.requestToPayOrder(invoiceScreen, invoice);
 		

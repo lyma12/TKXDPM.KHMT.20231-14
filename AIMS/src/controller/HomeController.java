@@ -11,13 +11,15 @@ import views.screen.BaseScreenHandler;
 
 public class HomeController extends BaseController {
 
-	public List<media> getAllMedia() throws SQLException{
-        return new media().getAllMedia();                
-    }
-	public List<String> getAllTypeMedia() throws SQLException{
+	public List<media> getAllMedia() throws SQLException { // Functional Cohesion
+		return new media().getAllMedia();
+	}
+
+	public List<String> getAllTypeMedia() throws SQLException { // Functional Cohesion
 		return new media().getTypeMedia();
 	}
-	public List<media> getListMediaByType(String type) throws SQLException{
+
+	public List<media> getListMediaByType(String type) throws SQLException { // Functional Cohesion
 		return new media().getMediaByType(type);
 	}
 }
