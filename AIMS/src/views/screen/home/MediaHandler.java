@@ -72,9 +72,6 @@ public class MediaHandler extends FXMLScreenHandler {
 	}
 	
 	private void setMediaInfor() throws SQLException {
-		File file = new File(media.getImageURL());
-		Image image = new Image(file.toURI().toString());
-		image_media_home.setImage(image);
 		
 		title_media_home.setText(media.getTitle());
 		price_media_home.setText(utils.getCurrencyFormat(media.getPrice()));

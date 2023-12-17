@@ -127,3 +127,21 @@
     <summary>Vũ Bá Lượng 20194109</summary>
 <br>
 </details>
+
+----
+<details>
+  <summary>W11: 03/12/2023~17/12/2023 </summary>
+<br>
+<details>
+<summary>Mã Thiên Lý</summary>
+<br>
+
+- Assigned tasks:
+  - Kiểm tra code có vi phạm nguyên tắc L: liskov substitution principle trong SOLID không?
+  - Nếu có hãy sửa 
+
+- Implementation details:
+  - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/3
+  - Specific implementation details:
+
+</details>

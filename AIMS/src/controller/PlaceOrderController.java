@@ -16,7 +16,9 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -46,12 +48,13 @@ public class PlaceOrderController extends BaseController {
         	order order = createOrder();
             //coupling class ShippingInfoHandler
 			ShippingInfoHandler shippingScreenHandler = new ShippingInfoHandler(cartScreen.getStage() , configs.SHIPPING_SCREEN_PATH);
-			shippingScreenHandler.setPreviousScreen(cartScreen);
-			shippingScreenHandler.setHomeScreenHandler(cartScreen.getHomeScreenHandler());
-			shippingScreenHandler.setScreenTitle("Shipping Screen");
-			shippingScreenHandler.setBController(this);
+//			shippingScreenHandler.setPreviousScreen(cartScreen);
+//			shippingScreenHandler.setHomeScreenHandler(cartScreen.getHomeScreenHandler());
+//			shippingScreenHandler.setScreenTitle("Shipping Screen");
+//			shippingScreenHandler.setBController(this);
 			shippingScreenHandler.setOrder(order);
-			shippingScreenHandler.show();
+//			shippingScreenHandler.show();
+			this.display(shippingScreenHandler, cartScreen, "Shipping Screen");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -89,12 +92,14 @@ public class PlaceOrderController extends BaseController {
         Invoice invoice = createInvoice(order);     //control coupling class Invoice
         //control and data coupling class InvoiceScreenHandler
         InvoiceScreenHandler invoiceScreen = new InvoiceScreenHandler(shippingScreen.getStage(), configs.INVOICE_SCREEN_PATH, invoice);
-        invoiceScreen.setPreviousScreen(shippingScreen);     
-		invoiceScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());
-		invoiceScreen.setScreenTitle("Invoice Screen");
-		invoiceScreen.setBController(this);
-		invoiceScreen.show();
+// code cu:
+//        invoiceScreen.setPreviousScreen(shippingScreen);     
+//		invoiceScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());
+//		invoiceScreen.setScreenTitle("Invoice Screen");
+//		invoiceScreen.setBController(this);
+//		invoiceScreen.show();
         //show invoice
+        this.display(shippingScreen, invoiceScreen, "Invoice Screen");
     }
 	public int getCartSubtotal(){
         int subtotal = Cart.getCart().calSubtotal();
@@ -131,20 +136,33 @@ public class PlaceOrderController extends BaseController {
      * giao hàng trong nội thành Hà Nội hoặc tp HCM giá khởi điểm 3kg đầu là 22.000 VND
      * giao hàng ở các vị trí khác là 0,5 kg đầu là 30.000 VND.
      * cứ 0.5kg tiếp theo, khách hàng sẽ phải trả thêm 2.500 VND
-     * trong trường hợp giao hàng nhanh, khách trả thêm 10.000 VND với mỗi sản phẩm giao hàng nhanh.
-     * ( vì các sản phẩm trong aims là sách, cd, dvd nên khối lượng sản phẩm lớn nhất coi như không quá 0.5 kg.)
-     * */
+     * trong trường hợp giao hàng nhanh, khách trả thêm 10.000 VND với mỗi sản phẩm giao hàng nhanh.*/
 	public int calculateShippingFee(order order, HashMap<String, String> deliveryForm ){
   		int fees = 0;
-		
-		// đơn hàng có tổng tiền sản phẩm trên 100 NVND sẽ được miễn phí.
+  		float weight = 0.0f;
+  		List<orderMedia> lst = order.getlstOrderMedia();
+  		for(orderMedia m: lst) {
+  			if(weight < m.getMedia().getWeight()) weight = m.getMedia().getWeight();
+  		}
 		
 		if(order.getAmount() < 100) {
 			String province = deliveryForm.get("province");
 			if(configs.SHIPPINGFEES_FIRST_22.contains(province)) {
-				fees = 22;
+				if(weight <= 3) {
+					fees = 22* ((int)weight + 1);
+				}
+				else {
+					fees = (int) (66+((int)weight-2)/0.5*2.5);
+				}
 			}
-			else fees = 30;
+			else {
+				if(weight <= 3) {
+					fees = 30* ((int)weight + 1);
+				}
+				else {
+					fees = (int) (90+((int)weight-2)/0.5*2.5);
+				}
+			}
 		}
         LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);
         return fees;

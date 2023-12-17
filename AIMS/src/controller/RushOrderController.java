@@ -31,7 +31,7 @@ public class RushOrderController extends BaseController {
 	private static Logger LOGGER = utils.utils.getLogger(RushOrderController.class.getName());
 	//data coupling class orderMedia
 	private boolean checkMediaSupportRushOrder(orderMedia media) {
-		return Math.random() < 0.5;
+		return media.getMedia().getSupportRushOrder();
 	}
 	
 	public boolean checkDeliveryToRushOrder(order order, HashMap<String, String> message) {
@@ -42,15 +42,19 @@ public class RushOrderController extends BaseController {
 		for(orderMedia item: lst) {
 			if(checkMediaSupportRushOrder(item)) {
 				order.addOrderMediaRushOrder(item);
+				order.removeOrderMedia(item);
 			}
 		}
 		if(order.getLstOrderMediaRushOrder().size() <= 0) return true;
 		return false;
 	}
-	public void validateDeliveryInfo(HashMap<String, String> info, BaseScreenHandler rushOrderScreen) throws InterruptedException, IOException{
+	public void validateDeliveryInfo(HashMap<String, String> info, Stage stage, order order) throws InterruptedException, IOException{
     	if(validateDistrict(info.get("district"))) throw new InvalidDeliveryInfoException();
     	else if(validateHours(info.get("hour"), info.get("minute"), info.get("AMP"))) throw new InvalidDeliveryInfoException();
-    	else rushOrderScreen.getStage().close();
+    	else {
+    		order.setShippingFees(this.calculateShippingFee(order));
+    		stage.close();
+    	}
     }
 	
 	private boolean validateDistrict(String district) {
@@ -94,14 +98,24 @@ public class RushOrderController extends BaseController {
 	}
 	public int calculateShippingFee(order order){
   		int fees = 0;
+  		float weight = 0.0f;
+  		List<orderMedia> lst = order.getlstOrderMedia();
+  		for(orderMedia m: lst) {
+  			if(weight < m.getMedia().getWeight()) weight = m.getMedia().getWeight();
+  		}
 		// tổng tiền ship 10.000 vnd cho mỗi một sản phẩm giao hàng nhanh và tiền ship của sản phẩm không giao hàng nhanh
   		if(order.getAmount() < 100) {
-			if(order.getlstOrderMedia().size() > order.getLstOrderMediaRushOrder().size()) {
-				fees += order.getShippingFees();
+			if(order.getlstOrderMedia().size() > 0) {
+				if(weight <= 3) {
+					fees = 22* ((int)weight + 1);
+				}
+				else {
+					fees = (int) (66+((int)weight-2)/0.5*2.5);
+				}
 			}
 			fees += order.getLstOrderMediaRushOrder().size()*10;
 		}
-        LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);
+        LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " );
         return fees;
     }
 }

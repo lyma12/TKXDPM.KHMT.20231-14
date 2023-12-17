@@ -38,12 +38,14 @@ public class PaymentController extends BaseController {
 	public void requestToPayOrder(BaseScreenHandler invoiceScreen, Invoice invoice) {
 		this.invoice = invoice;
 		try {
+// code cu
 			BaseScreenHandler paymentScreen = new PaymentScreenHandler(invoiceScreen.getStage(), configs.PAYMENT_SCREEN_PATH, invoice );
-			paymentScreen.setBController(this);
-			paymentScreen.setPreviousScreen(invoiceScreen);
-			paymentScreen.setHomeScreenHandler(invoiceScreen.getHomeScreenHandler());
-			paymentScreen.setScreenTitle("Payment Screen");
-			paymentScreen.show();
+//			paymentScreen.setBController(this);
+//			paymentScreen.setPreviousScreen(invoiceScreen);
+//			paymentScreen.setHomeScreenHandler(invoiceScreen.getHomeScreenHandler());
+//			paymentScreen.setScreenTitle("Payment Screen");
+//			paymentScreen.show();
+			this.display(invoiceScreen, paymentScreen, "Payment Screen");
 			LOGGER.info("Confirmed invoice");
 		}catch(IOException e) {
 			e.printStackTrace();

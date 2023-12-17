@@ -35,21 +35,18 @@ public class AIMSDB {
     
 
     public static void main(String[] args) {
-//        AIMSDB.getConnection();
-    	String sql = "SELECT * FROM User ;";
-        Statement stm;
-		try {
-			stm = AIMSDB.getConnection().createStatement();
-			ResultSet res = stm.executeQuery(sql);
-			if(res.next()) {
-				LOGGER.info(Integer.toString(res.getInt("id")));
-				LOGGER.info(res.getString("username"));
-				LOGGER.info(res.getString("password"));
+    	//AIMSDB.getConnection();
+    	try {
+			media m = new media();
+			List<media> l = m.getAllMedia();
+			for(media i : l) {
+				LOGGER.info(i.toString());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
         
     }
 }

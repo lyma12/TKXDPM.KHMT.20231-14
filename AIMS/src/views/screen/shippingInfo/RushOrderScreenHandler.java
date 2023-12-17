@@ -114,7 +114,7 @@ public class RushOrderScreenHandler extends BaseScreenHandler {
 		messages.put("district", this.province.getValue());
 		this.validate_error.setVisible(false);
 		try {
-			this.getBController().validateDeliveryInfo(messages, this);
+			this.getBController().validateDeliveryInfo(messages, this.stage, this.order);
 		} catch (InterruptedException | IOException e) {
 			e.printStackTrace();
 		} catch (InvalidDeliveryInfoException e1) {

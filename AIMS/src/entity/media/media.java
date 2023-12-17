@@ -1,5 +1,6 @@
 package entity.media;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,19 +23,24 @@ public class media {
     protected int price; // the price which will be displayed on browser (eg: 500)
     protected int quantity;
     protected String type;
+    protected String barcode;
+    protected Date ngay_nhap_kho;
+    protected int size;
+    protected String description;
+    protected float weight;
+    protected boolean support_rush_order;
     protected String imageURL;
     public media() throws SQLException{
         stm = AIMSDB.getConnection().createStatement();
     }
 
-    public media (int id, String title, String category, int price, int quantity, String type) throws SQLException{
+    public media (int id, String title, String category, int price, int quantity, String type ) throws SQLException{
         this.id = id;
         this.title = title;
         this.category = category;
         this.price = price;
         this.quantity = quantity;
         this.type = type;
-
         //stm = AIMSDB.getConnection().createStatement();
     }
 
@@ -56,6 +62,8 @@ public class media {
                 .setQuantity(res.getInt("quantity"))
                 .setCategory(res.getString("category"))
                 .setMediaURL(res.getString("imageUrl"))
+                .setWeight(res.getFloat("weight"))
+                .setSupportRushOrder(res.getBoolean("support_rush_order"))
                 .setPrice(res.getInt("price"))
                 .setType(res.getString("type"));
         }
@@ -76,6 +84,8 @@ public class media {
                     .setCategory(res.getString("category"))
                     .setMediaURL(res.getString("imageUrl"))
                     .setPrice(res.getInt("price"))
+                    .setWeight(res.getFloat("weight"))
+                    .setSupportRushOrder(res.getBoolean("support_rush_order"))
                     .setType(res.getString("type"));
                 medium.add(media);
     	}
@@ -118,6 +128,8 @@ public class media {
                 .setCategory(res.getString("category"))
                 .setMediaURL(res.getString("imageUrl"))
                 .setPrice(res.getInt("price"))
+                .setWeight(res.getFloat("weight"))
+                .setSupportRushOrder(res.getBoolean("support_rush_order"))
                 .setType(res.getString("type"));
             medium.add(media);
         }
@@ -193,6 +205,21 @@ public class media {
         this.type = type;
         return this;
     }
+    
+    protected media setWeight(float w) {
+    	this.weight = w;
+    	return this;
+    }
+    public float getWeight() {
+    	return this.weight;
+    }
+    protected media setSupportRushOrder(boolean support) {
+    	this.support_rush_order = support;
+    	return this;
+    }
+    public boolean getSupportRushOrder() {
+    	return this.support_rush_order;
+    }
 
     @Override
     public String toString() {
@@ -203,6 +230,8 @@ public class media {
             ", price='" + price + "'" +
             ", quantity='" + quantity + "'" +
             ", type='" + type + "'" +
+            ", weight='" + this.weight + "'" + 
+            ", support rush order='" + this.support_rush_order + "'" + 
             ", imageURL='" + imageURL + "'" +
             "}";
     }    

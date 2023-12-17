@@ -41,10 +41,7 @@ public class MediaHandler extends FXMLScreenHandler {
 		setInfo();
 	}
 	private void setInfo() {
-		File file = new File(this.media.getMedia().getImageURL());
-		Image im = new Image(file.toURI().toString());
-		this.image.setImage(im);
-		
+		this.setImage(image, this.media.getMedia().getImageURL());
 		this.title.setText(this.media.getMedia().getTitle());
 		String shipping_note = "";
 		if(this.rush_order) shipping_note = "Sản phẩm được vận chuyển nhanh";

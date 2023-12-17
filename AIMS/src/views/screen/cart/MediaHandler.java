@@ -49,9 +49,7 @@ public class MediaHandler extends FXMLScreenHandler {
 		setMediaInfor();
 	}
 	private void setMediaInfor() {
-		File file = new File(cartMedia.getMedia().getImageURL());
-		Image im = new Image(file.toURI().toString());
-		this.image.setImage(im);
+		this.setImage(this.image, cartMedia.getMedia().getImageURL());
 		this.title.setText(this.cartMedia.getMedia().getTitle());
 		this.price.setText(utils.getCurrencyFormat(cartMedia.getPrice()));
 		this.delete.setOnMouseClicked(
