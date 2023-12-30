@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
-
+import controller.HomeControl.HomeController;
 import javafx.scene.control.Cell;
 import utils.configs;
-import controller.HomeController;
 import entity.media.media;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;

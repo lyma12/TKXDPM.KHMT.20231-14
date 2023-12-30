@@ -99,6 +99,7 @@ public class configs {
 		public static final String HOME_MEDIA_ITEM = "/views/fxml/item_media.fxml";
 		public static final String RUSHORDER_SCREEN_PATH = "/views/fxml/rush_order_form.fxml";
 		public static final String RUSHORDER_ITEM_SCREEN_PATH = "/views/fxml/rush_order_item.fxml";
+		public static final String LOGIN_SCREEN = "/views/fxml/login_screen.fxml";
 
 		public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
 		

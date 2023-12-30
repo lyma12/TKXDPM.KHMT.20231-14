@@ -174,7 +174,7 @@ public class PlaceOrderController extends BaseController {
         LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);
         return fees;
     }
-	public void confirmInvoice(InvoiceScreenHandler invoiceScreen) {    //functional cohesion
+	public void confirmInvoice(InvoiceScreenHandler invoiceScreen, Invoice invoice) {    //functional cohesion
 		PaymentController paymentController = new PaymentController();
 		paymentController.requestToPayOrder(invoiceScreen, invoice);
 		

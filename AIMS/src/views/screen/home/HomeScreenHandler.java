@@ -1,8 +1,8 @@
 package views.screen.home;
 
 import javafx.scene.control.ListCell;
-import controller.HomeController;
 import controller.ViewCartController;
+import controller.HomeControl.HomeController;
 import utils.configs;
 import java.io.IOException;
 import java.net.URL;

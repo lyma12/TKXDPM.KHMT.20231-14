@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import entity.media.media;
+import utils.configs;
 import utils.utils;
 
 public class AIMSDB {
@@ -18,14 +19,9 @@ public class AIMSDB {
     public static Connection getConnection() {
         if (connect != null) return connect;
         try {
-//        	Class.forName("org.sqlite.JDBC");
-//            String url = "jdbc:sqlite:assets/db/aims.db";
-//            connect = DriverManager.getConnection(url);
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/aims?useSSL=false";
-            String password = "LinhLinh17122002";
-            String user = "root";
-            connect = DriverManager.getConnection(url,user, password );
+        	Class.forName("org.sqlite.JDBC");
+            String url = "jdbc:sqlite:assets/db/aims_student.db";
+            connect = DriverManager.getConnection(url);
             LOGGER.info("Connect database successfully");
         } catch (Exception e) {
             LOGGER.info(e.getMessage());
@@ -35,17 +31,7 @@ public class AIMSDB {
     
 
     public static void main(String[] args) {
-    	//AIMSDB.getConnection();
-    	try {
-			media m = new media();
-			List<media> l = m.getAllMedia();
-			for(media i : l) {
-				LOGGER.info(i.toString());
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	AIMSDB.getConnection();
     	
         
     }
