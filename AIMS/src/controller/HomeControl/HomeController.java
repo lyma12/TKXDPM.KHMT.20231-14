@@ -1,14 +1,10 @@
-package controller;
+package controller.HomeControl;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-<<<<<<< Updated upstream:AIMS/src/controller/HomeController.java
-=======
-
 import controller.BaseController;
 import controller.LogInController;
->>>>>>> Stashed changes:AIMS/src/controller/HomeControl/HomeController.java
 import entity.media.Book;
 import entity.media.media;
 import entity.user.User;
@@ -43,7 +39,6 @@ public class HomeController extends BaseController implements IHomeController {
 	}
 	public void LogOut(Stage stage) {
 		try {
-			System.out.print("hi");
 			HomeScreenHandler homeHandler = new HomeScreenHandler(stage, configs.HOME_PATH);
 			homeHandler.setScreenTitle("Home Screen");
 			homeHandler.show();
@@ -65,5 +60,6 @@ public class HomeController extends BaseController implements IHomeController {
 		}
 		
 	}
+
 	
 }

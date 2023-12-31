@@ -224,12 +224,6 @@
             - phương thức **validateDeliveryInfo** nên tách riêng ra 1 class khác (**validateDeliveryInfo.java**) cùng với các phương thức con của nó (**validateDistrict, validateHour**) được khai báo bên trong. Mục đính là để tránh việc kiểm tra thông tin vận chuyển nhanh thực thi trong class RushOrderController, vì nếu có thay đổi trong logic kiểm tra thông tin thì class RushOrderController cũng sẽ phải thay đổi một cách không đáng có (vi phạm nguyên tắc thiết kế SRP)
 <br>
 </details>
-</details>
-
-----
-<details>
-  <summary>W11: 11/12/2023~17/12/2023 </summary>
-<br>
 <details>
 <summary>Mã Thiên Lý</summary>
 <br>

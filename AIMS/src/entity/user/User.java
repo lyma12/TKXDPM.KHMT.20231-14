@@ -1,14 +1,18 @@
 package entity.user;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import entity.db.AIMSDB;
+
 public class User {
-	private int id;
     private String name;
     private String email;
     private String address;
     private String phone;
-<<<<<<< Updated upstream
-=======
     private String role;
+    private String ho_ten;
     
     public static User findUser(String email) throws SQLException {
     	Statement pstm = AIMSDB.getConnection().createStatement();
@@ -16,35 +20,46 @@ public class User {
 	    ResultSet res = pstm.executeQuery(sql);
 	    if(res.next()) {
 	    	return new User()
+	    			.setRole(res.getString("role"))
+	    			.setPhone(res.getString("phone"))
 	    			.setusername(res.getString("username"))
 	    			.setEmail(res.getString("email"))
 	    			.setAddress(res.getString("address"))
-	    			.setHoten(res.getString("ho_ten"))
-	    			.setRole(res.getString("role"))
-	    			.setPhone(res.getString("phone"));
+	    			.setHoten(res.getString("ho_ten"));
 	    }
     	return null;
     }
     
     public User() {
->>>>>>> Stashed changes
+    	super();
+    }
 
-    public User(int id, String name, String email, String address, String phone){
-        this.id = id;
+    public User(String name, String email, String address, String phone, String role){
         this.name = name;
         this.email = email;
         this.address = address;
         this.phone = phone;
     }
+    protected User setHoten(String ho_ten) {
+    	this.ho_ten = ho_ten;
+    	return this;
+    }
+    protected User setRole(String role) {
+    	this.role = role;
+    	return this;
+    }
+    
     
     // override toString method
     @Override
     public String toString() {
         return "{" +
             "  username='" + name + "'" +
+            ", ho ten ='" + ho_ten + "'" +
             ", email='" + email + "'" +
             ", address='" + address + "'" +
             ", phone='" + phone + "'" +
+            ", role='" + role + "'" +
             "}";
     }
 
@@ -53,32 +68,36 @@ public class User {
         return this.name;
     }
 
-    public void setusername(String name) {
+    protected User setusername(String name) {
         this.name = name;
+        return this;
     }
 
     public String getEmail() {
         return this.email;
     }
 
-    public void setEmail(String email) {
+    protected User setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getAddress() {
         return this.address;
     }
 
-    public void setAddress(String address) {
+    protected User setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setPhone(String phone) {
+    protected User setPhone(String phone) {
         this.phone = phone;
+        return this;
     }
     public String getRole() {
     	return this.role;

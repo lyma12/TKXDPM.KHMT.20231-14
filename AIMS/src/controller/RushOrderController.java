@@ -32,7 +32,7 @@ public class RushOrderController extends BaseController {
 	//data coupling class orderMedia
 	private boolean checkMediaSupportRushOrder(orderMedia media) {
 		return media.getMedia().getSupportRushOrder();
-
+	}
 	
 	public boolean checkDeliveryToRushOrder(order order, HashMap<String, String> message) {    //functional cohesion
 		String province = message.get("province");
@@ -86,7 +86,7 @@ public class RushOrderController extends BaseController {
 		try {
 			Stage newStage = new Stage();
 			//control and data coupling class RushOrderScreenHandler
-			RushOrderScreenHandler rushOrderScreen = new RushOrderScreenHandler(newStage, configs.RUSHORDER_SCREEN_PATH, shippingScreen.getOrder(), shippingScreen.getMessage());
+			RushOrderScreenHandler rushOrderScreen = new RushOrderScreenHandler(newStage, configs.RUSHORDER_SCREEN_PATH, order, message);
 			rushOrderScreen.setBController(this);    //communication cohesion
 			rushOrderScreen.setPreviousScreen(shippingScreen);
 			rushOrderScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());

@@ -1,13 +1,9 @@
 package views.screen.home;
 
 import javafx.scene.control.ListCell;
-import controller.HomeController;
 import controller.ViewCartController;
-<<<<<<< Updated upstream
-=======
 import controller.HomeControl.HomeController;
 import entity.user.User;
->>>>>>> Stashed changes
 import utils.configs;
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import utils.utils;
@@ -34,24 +29,22 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
 	@FXML
 	private Button btn_cart;
 	@FXML
-	private Button btnLogIn;
-	@FXML
-	private ImageView imageLogIn;
-	private User user;
-	@FXML
 	private ListView<Group_Media> listview_group_media;
+	private User user;
 	public static Logger LOGGER = utils.getLogger(HomeScreenHandler.class.getName());
 	protected AnchorPane content; 
 
 	public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
-	
 	}
-	public HomeScreenHandler(Stage stage, String screenPath, User user, HomeController homecontroller) throws IOException{
+	public HomeScreenHandler(Stage stage, String screenPath, User user, HomeController controller) throws IOException {
 		super(stage, screenPath);
 		this.user = user;
-		this.setBController(homecontroller);
+		this.setBController(controller);
 	}
+	public HomeController getBController() {
+        return (HomeController) super.getBController();
+    }
 	@Override
 	public void show() {
 		super.show();
@@ -59,8 +52,8 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		if(this.getBController() == null) this.setBController(new HomeController());
-		this.setProfile(user, this.getStage());
+		if(this.getBController() == null) setBController(new HomeController());
+		this.setProfile(this.user, stage);
 		try {
 			List<String> typeOfMedia = getBController().getAllTypeMedia();
 			for(String item: typeOfMedia) {

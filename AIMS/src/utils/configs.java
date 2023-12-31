@@ -100,13 +100,9 @@ public class configs {
 		public static final String HOME_ADMIN_SCREEN = "/views/fxml/home_admin.fxml";
 		public static final String RUSHORDER_SCREEN_PATH = "/views/fxml/rush_order_form.fxml";
 		public static final String RUSHORDER_ITEM_SCREEN_PATH = "/views/fxml/rush_order_item.fxml";
-<<<<<<< Updated upstream
-=======
 		public static final String LOGIN_SCREEN = "/views/fxml/login_screen.fxml";
 		public static final String HOME_MANAGER_SCREEN = "/views/fxml/home_manager.fxml";
 		public static final String HOME_BOTH_SCREEN = "/views/fxml/home_both.fxml";
->>>>>>> Stashed changes
-
 		public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
 		
 		public static List<String> SHIPPINGFEES_FIRST_22 =  Arrays.asList("Hà Nội", "Hồ Chí Minh");

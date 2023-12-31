@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 
 import controller.BaseController;
-import controller.HomeController;
+import controller.HomeControl.HomeController;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import views.screen.home.HomeScreenHandler;
