@@ -12,10 +12,5 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/TKXDPM.KHMT.20231-14/TKXDPM.KHMT.20231-14/AIMS/lib/mysql-connector-j-8.1.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

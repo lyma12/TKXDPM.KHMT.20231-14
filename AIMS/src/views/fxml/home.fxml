@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -16,11 +17,6 @@
          <children>
             <AnchorPane prefHeight="70.0" prefWidth="1240.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AIMS software" AnchorPane.bottomAnchor="12.1171875" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="970.0" AnchorPane.topAnchor="10.0">
-                     <font>
-                        <Font name="System Bold" size="36.0" />
-                     </font>
-                  </Text>
                   <Button fx:id="btn_cart" mnemonicParsing="false" textFill="#beb2b2" AnchorPane.bottomAnchor="6.666666666666664" AnchorPane.leftAnchor="1124.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="15.0">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -28,6 +24,14 @@
                               <Image url="@../../../assets/images/cart.png" />
                            </image>
                         </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnLogIn" layoutX="1019.0" layoutY="23.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="56.0" AnchorPane.bottomAnchor="6.666666666666664" AnchorPane.leftAnchor="1054.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="15.0">
+                     <graphic>
+                        <ImageView fx:id="imageLogIn" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/login-.png" />
+                           </image></ImageView>
                      </graphic>
                   </Button>
                </children>
@@ -39,5 +43,24 @@
             </ListView>
          </children>
       </VBox>
+      <Pane fx:id="paneProfile" prefHeight="50.0" prefWidth="300.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Text fx:id="username" layoutX="80.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="15.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/images/user-interface.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <ImageView fx:id="logo" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="529.3802833557129" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="1150.0" AnchorPane.topAnchor="20.0">
+         <image>
+            <Image url="@../../../assets/images/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -97,10 +97,12 @@ public class configs {
 		public static final String HOME_MEDIA_PATH = "/views/fxml/media_group_media.fxml";
 		public static final String POPUP_PATH = "/views/fxml/popup.fxml";
 		public static final String HOME_MEDIA_ITEM = "/views/fxml/item_media.fxml";
+		public static final String HOME_ADMIN_SCREEN = "/views/fxml/home_admin.fxml";
 		public static final String RUSHORDER_SCREEN_PATH = "/views/fxml/rush_order_form.fxml";
 		public static final String RUSHORDER_ITEM_SCREEN_PATH = "/views/fxml/rush_order_item.fxml";
 		public static final String LOGIN_SCREEN = "/views/fxml/login_screen.fxml";
-
+		public static final String HOME_MANAGER_SCREEN = "/views/fxml/home_manager.fxml";
+		public static final String HOME_BOTH_SCREEN = "/views/fxml/home_both.fxml";
 		public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
 		
 		public static List<String> SHIPPINGFEES_FIRST_22 =  Arrays.asList("Hà Nội", "Hồ Chí Minh");

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +18,7 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Text>
-      <Button layoutX="1116.0" layoutY="41.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" AnchorPane.bottomAnchor="530.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
+      <Button fx:id="btnReturn" layoutX="1116.0" layoutY="41.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" AnchorPane.bottomAnchor="530.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -26,7 +27,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Pane layoutX="520.0" layoutY="220.0" onKeyTyped="#email" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+      <Pane layoutX="520.0" layoutY="220.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
          <children>
             <Text layoutX="50.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email: ">
                <font>
@@ -39,12 +40,18 @@
                </font>
             </Text>
             <TextField fx:id="email" layoutX="220.0" layoutY="130.0" prefHeight="40.0" prefWidth="350.0" promptText="Nhập email của bạn" />
-            <Button layoutX="250.0" layoutY="336.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Log In">
+            <Button fx:id="confirm" layoutX="250.0" layoutY="336.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Log In">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Button>
-            <PasswordField fx:id="password" editable="false" layoutX="220.0" layoutY="200.0" prefHeight="40.0" prefWidth="350.0" promptText="Nhập password của bạn" />
+            <PasswordField fx:id="password" layoutX="220.0" layoutY="200.0" prefHeight="40.0" prefWidth="350.0" promptText="Nhập password của bạn" />
+            <TextField fx:id="passwordShowField" layoutX="220.0" layoutY="200.0" prefHeight="40.0" prefWidth="350.0" promptText="Nhập password của bạn" visible="false" />
+            <ToggleButton fx:id="showPassword" layoutX="535.0" layoutY="250.0" mnemonicParsing="false" text="show">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </ToggleButton>
          </children>
       </Pane>
    </children>

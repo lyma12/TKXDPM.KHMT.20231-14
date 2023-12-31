@@ -1,22 +1,18 @@
 package entity.user;
 
-import java.security.SecureRandom;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import entity.db.AIMSDB;
-import utils.configs;
 
 public class User {
-	private int id;
-    private String username;
-    private String ho_ten;
+    private String name;
     private String email;
     private String address;
     private String phone;
     private String role;
+    private String ho_ten;
     
     public static User findUser(String email) throws SQLException {
     	Statement pstm = AIMSDB.getConnection().createStatement();
@@ -24,82 +20,25 @@ public class User {
 	    ResultSet res = pstm.executeQuery(sql);
 	    if(res.next()) {
 	    	return new User()
+	    			.setRole(res.getString("role"))
+	    			.setPhone(res.getString("phone"))
 	    			.setusername(res.getString("username"))
 	    			.setEmail(res.getString("email"))
 	    			.setAddress(res.getString("address"))
-	    			.setHoten(res.getString("ho_ten"))
-	    			.setRole(res.getString("role"))
-	    			.setPhone(res.getString("phone"));
+	    			.setHoten(res.getString("ho_ten"));
 	    }
-	    System.out.print("r");
     	return null;
     }
     
     public User() {
-
+    	super();
     }
-    public User(String name, String email, String address, String phone, String password, String role){
-        this.username = name;
+
+    public User(String name, String email, String address, String phone, String role){
+        this.name = name;
         this.email = email;
         this.address = address;
         this.phone = phone;
-        if(role.equals("both")|| role.equals("admin")||role.equals("product_manager")) {
-        	this.role = role;
-        }
-        else this.role = "none";
-        String salt = this.getSalt();
-        password = configs.hmacSHA512(salt, password) + salt;
-        PreparedStatement pstm = null;
-        try {
-            pstm = AIMSDB.getConnection().prepareStatement("INSERT INTO User (email, password, salt, address, phone, role) VALUES (?, ?, ?, ?, ?, ? )");
-            pstm.setString(1, email);
-            pstm.setString(2, password);
-            pstm.setString(3, salt);
-            pstm.setString(4, address);
-            pstm.setString(5, phone);
-            pstm.setString(6, this.role);
-            pstm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (pstm != null) {
-                    pstm.close();
-                }
-                if (AIMSDB.getConnection() != null) {
-                    AIMSDB.getConnection().close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        
-    }
-    
-    
-    // override toString method
-    @Override
-    public String toString() {
-        return "{" +
-            "  username='" + username + "'" +
-            ", email='" + email + "'" +
-            ", address='" + address + "'" +
-            ", phone='" + phone + "'" +
-            "}";
-    }
-
-    // getter and setter
-    public String getName() {
-        return this.username;
-    }
-    private String getSalt() {
-    	return new SecureRandom().generateSeed(16).toString();
-    }
-
-    protected User setusername(String name) {
-        this.username = name;
-        return this;
     }
     protected User setHoten(String ho_ten) {
     	this.ho_ten = ho_ten;
@@ -108,6 +47,30 @@ public class User {
     protected User setRole(String role) {
     	this.role = role;
     	return this;
+    }
+    
+    
+    // override toString method
+    @Override
+    public String toString() {
+        return "{" +
+            "  username='" + name + "'" +
+            ", ho ten ='" + ho_ten + "'" +
+            ", email='" + email + "'" +
+            ", address='" + address + "'" +
+            ", phone='" + phone + "'" +
+            ", role='" + role + "'" +
+            "}";
+    }
+
+    // getter and setter
+    public String getName() {
+        return this.name;
+    }
+
+    protected User setusername(String name) {
+        this.name = name;
+        return this;
     }
 
     public String getEmail() {
@@ -136,5 +99,7 @@ public class User {
         this.phone = phone;
         return this;
     }
-
+    public String getRole() {
+    	return this.role;
+    }
 }

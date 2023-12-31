@@ -3,6 +3,7 @@ package views.screen.home;
 import javafx.scene.control.ListCell;
 import controller.ViewCartController;
 import controller.HomeControl.HomeController;
+import entity.user.User;
 import utils.configs;
 import java.io.IOException;
 import java.net.URL;
@@ -24,17 +25,22 @@ import utils.utils;
 import views.screen.BaseScreenHandler;
 import views.screen.cart.CartScreenHandler;
 
-public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
+public class HomeScreenHandler extends HomeScreen implements Initializable {
 	@FXML
 	private Button btn_cart;
 	@FXML
 	private ListView<Group_Media> listview_group_media;
+	private User user;
 	public static Logger LOGGER = utils.getLogger(HomeScreenHandler.class.getName());
 	protected AnchorPane content; 
 
 	public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
-	
+	}
+	public HomeScreenHandler(Stage stage, String screenPath, User user, HomeController controller) throws IOException {
+		super(stage, screenPath);
+		this.user = user;
+		this.setBController(controller);
 	}
 	public HomeController getBController() {
         return (HomeController) super.getBController();
@@ -46,8 +52,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		setBController(new HomeController());
-
+		if(this.getBController() == null) setBController(new HomeController());
+		this.setProfile(this.user, stage);
 		try {
 			List<String> typeOfMedia = getBController().getAllTypeMedia();
 			for(String item: typeOfMedia) {

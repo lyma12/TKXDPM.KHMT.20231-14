@@ -17,18 +17,12 @@ import javafx.scene.layout.StackPane;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-//		try {
-//			HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, configs.HOME_PATH);
-//			homeHandler.setScreenTitle("Home Screen");
-//			homeHandler.show();
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
 		try {
-			AuthenticationService.authenticate("linhlinh17122002@gmail.com", "my_password");
-		} catch (SQLException e) {
-			System.out.println("eror");
-			e.printStackTrace();
+			HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, configs.HOME_PATH);
+			homeHandler.setScreenTitle("Home Screen");
+			homeHandler.show();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 	

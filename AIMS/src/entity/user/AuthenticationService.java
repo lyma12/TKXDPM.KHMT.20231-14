@@ -1,10 +1,10 @@
 package entity.user;
-
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import common.exception.InvalidEmail;
+import common.exception.InvalidPassword;
 import entity.db.AIMSDB;
 import utils.configs;
 
@@ -13,6 +13,7 @@ public class AuthenticationService {
 		if(checkPassword(email, password)) {
 			User user = User.findUser(email);
 			System.out.println(user.toString());
+			return user;
 		}
 		return null;
 	}
@@ -29,11 +30,10 @@ public class AuthenticationService {
 	        	return true;
 	        }
 	        else {
-	        	System.out.print("wrong");
-	        	return false;
+	        	throw new InvalidPassword("Sai mật khẩu");
 	        }
 	    } else {
-	        return false;
+	        throw new InvalidEmail("Tài khoản không đúng. Vui lòng nhập lại!");
 	    }
 	}
 }
