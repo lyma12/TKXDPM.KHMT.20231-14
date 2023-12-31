@@ -6,6 +6,28 @@ public class User {
     private String email;
     private String address;
     private String phone;
+<<<<<<< Updated upstream
+=======
+    private String role;
+    
+    public static User findUser(String email) throws SQLException {
+    	Statement pstm = AIMSDB.getConnection().createStatement();
+		String sql = "SELECT * FROM User WHERE User.email = '" + email + "'";
+	    ResultSet res = pstm.executeQuery(sql);
+	    if(res.next()) {
+	    	return new User()
+	    			.setusername(res.getString("username"))
+	    			.setEmail(res.getString("email"))
+	    			.setAddress(res.getString("address"))
+	    			.setHoten(res.getString("ho_ten"))
+	    			.setRole(res.getString("role"))
+	    			.setPhone(res.getString("phone"));
+	    }
+    	return null;
+    }
+    
+    public User() {
+>>>>>>> Stashed changes
 
     public User(int id, String name, String email, String address, String phone){
         this.id = id;
@@ -58,5 +80,7 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
+    public String getRole() {
+    	return this.role;
+    }
 }

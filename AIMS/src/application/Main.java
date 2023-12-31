@@ -1,12 +1,21 @@
 package application;
 	
 import java.io.IOException;
+<<<<<<< Updated upstream
+=======
+import java.security.SecureRandom;
+import java.sql.SQLException;
+
+import controller.LogInController;
+import entity.user.AuthenticationService;
+>>>>>>> Stashed changes
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.configs;
+import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -14,6 +23,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+<<<<<<< Updated upstream
 
 		/*	// initialize the scene
 			StackPane root = (StackPane) FXMLLoader.load(getClass().getResource(configs.SPLASH_SCREEN_PATH));
@@ -52,6 +62,15 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
+=======
+			HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, configs.HOME_PATH);
+			homeHandler.setScreenTitle("Home Screen");
+			homeHandler.show();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+>>>>>>> Stashed changes
 	}
 	
 	public static void main(String[] args) {
