@@ -17,6 +17,7 @@ import controller.PlaceOrderController;
 import entity.invoice.Invoice;
 import entity.order.order;
 import entity.order.orderMedia;
+import entity.shipping.Shipment;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -40,10 +41,10 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 	protected Text shipping_note;
 	protected Button btn_confirm;
 	protected ListView<MediaHandler> list_view;
-	private HashMap<String, String> messages;
+	protected Shipment shippingInfo;
 	private Invoice invoice;     //coupling class invoice
 	
-	public InvoiceScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
+	public InvoiceScreenHandler(Stage stage, String screenPath, Invoice invoice, Shipment shippingInfo) throws IOException {
 		super(stage, screenPath);
 		this.invoice_name = (Text) this.content.lookup("#invoice_name");
 		this.invoice_phone = (Text) this.content.lookup("#invoice_phone");
@@ -56,18 +57,18 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 		this.list_view = (ListView<MediaHandler>) this.content.lookup("#list_view");
 		this.shipping_note = (Text) this.content.lookup("#shipping_note");
 		this.btn_confirm = (Button) this.content.lookup("#btn_confirm");
-		this.messages = invoice.getOrder().getDeliveryInfo();
 		this.invoice = invoice;
+		this.shippingInfo = shippingInfo;
 		setInvoice();
 	}
 	
 	private void setInvoice() {
-		this.invoice_name.setText(this.messages.get("name"));
-		this.invoice_phone.setText(this.messages.get("phone"));
-		this.invoice_province.setText(this.messages.get("province"));
+		this.invoice_name.setText(this.shippingInfo.getName());
+		this.invoice_phone.setText(this.shippingInfo.getPhone());
+		this.invoice_province.setText(this.shippingInfo.getProvince());
 		String tmp = "";
-		if(this.messages.get("instructions") != null && this.messages.get("instructions") != "") tmp += this.messages.get("instructions") + ".";
-		if(this.messages.get("rush_order") == "true") tmp += this.messages.get("district");
+		if(this.shippingInfo.getInstructions() != null || this.shippingInfo.getInstructions() != "") tmp += this.shippingInfo.getInstructions() + ".";
+		if(this.shippingInfo.getRushOrder()) tmp += this.shippingInfo.getAddress();
 		this.invoice_intructions.setText(tmp);
 		this.invoice_subtotal.setText(utils.getCurrencyFormat(this.invoice.getOrder().getAmount()));
 		this.invoice_shipping_fees.setText(utils.getCurrencyFormat(this.invoice.getOrder().getShippingFees()));
@@ -100,8 +101,8 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		if(this.messages.get("rush_order") == "true") {
-			String note = "Giao Nhanh: " + this.messages.get("hour") + ":" + this.messages.get("minute") + " " + this.messages.get("AMP");
+		if(this.shippingInfo.getRushOrder()) {
+			String note = "Giao Nhanh: " + this.shippingInfo.getHours();
 			this.shipping_note.setVisible(true);
 			this.shipping_note.setText(note);
 		}

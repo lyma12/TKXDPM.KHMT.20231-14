@@ -1,6 +1,8 @@
-/controller/
-/views/
+
 /utils/
-/entity/
 /common/
 /application/
+/entity/
+/mail/
+/controller/
+/views/

@@ -20,6 +20,7 @@ import common.exception.InvalidDeliveryInfoException;
 import common.exception.MediaOrProvinceNotSupportRushOrderException;
 import entity.order.order;
 import entity.order.orderMedia;
+import entity.shipping.Shipment;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import utils.configs;
@@ -34,8 +35,7 @@ public class RushOrderController extends BaseController {
 		return media.getMedia().getSupportRushOrder();
 	}
 	
-	public boolean checkDeliveryToRushOrder(order order, HashMap<String, String> message) {    //functional cohesion
-		String province = message.get("province");
+	public boolean checkDeliveryToRushOrder(order order, String province) {    //functional cohesion
 		if(!configs.PROVINCE_SUPPORT_RUSH_ORDER.contains(province)) return true;
 		//data coupling class order
 		List<orderMedia> lst = order.getlstOrderMedia();
@@ -48,10 +48,13 @@ public class RushOrderController extends BaseController {
 		if(order.getLstOrderMediaRushOrder().size() <= 0) return true;
 		return false;
 	}
-	public void validateDeliveryInfo(HashMap<String, String> info, Stage stage, order order) throws InterruptedException, IOException{
-    	if(validateDistrict(info.get("district"))) throw new InvalidDeliveryInfoException();
-    	else if(validateHours(info.get("hour"), info.get("minute"), info.get("AMP"))) throw new InvalidDeliveryInfoException();
+	public void validateDeliveryInfo(Shipment shippingInfo, String hours, String minute, String APM, String instructions, String province, Stage stage, order order) throws InterruptedException, IOException{
+    	if(validateDistrict(province)) throw new InvalidDeliveryInfoException();
+    	else if(validateHours(hours, minute, APM)) throw new InvalidDeliveryInfoException();
     	else {
+    		shippingInfo.setHours(hours + ": " + minute + ": " + APM + " ");
+    		shippingInfo.setAddress(shippingInfo.getAddress() + " District: " + province);
+    		shippingInfo.setInstruction(instructions);
     		order.setShippingFees(this.calculateShippingFee(order));
     		stage.close();
     	}
@@ -79,14 +82,18 @@ public class RushOrderController extends BaseController {
 		return false;
 	}
 	
-	public void requestPlaceRushOrder(BaseScreenHandler shippingScreen, order order, HashMap<String, String> message) {     //data coupling class ShippingInfoHandler
-		if(checkDeliveryToRushOrder(order, message)) {
+	public void requestPlaceRushOrder(BaseScreenHandler shippingScreen, order order, Shipment shippingInfo) {     //data coupling class ShippingInfoHandler
+		if(checkDeliveryToRushOrder(order, shippingInfo.getProvince())) {
 			throw new MediaOrProvinceNotSupportRushOrderException();
 		}
 		try {
 			Stage newStage = new Stage();
 			//control and data coupling class RushOrderScreenHandler
+<<<<<<< HEAD
 			RushOrderScreenHandler rushOrderScreen = new RushOrderScreenHandler(newStage, configs.RUSHORDER_SCREEN_PATH, order, message);
+=======
+			RushOrderScreenHandler rushOrderScreen = new RushOrderScreenHandler(newStage, configs.RUSHORDER_SCREEN_PATH, order, shippingInfo);
+>>>>>>> MaThienLy20204582
 			rushOrderScreen.setBController(this);    //communication cohesion
 			rushOrderScreen.setPreviousScreen(shippingScreen);
 			rushOrderScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());

@@ -5,7 +5,7 @@ module Aexample {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	requires javafx.web;
-	
+	requires java.mail;
 	exports views.screen to javafx.fxml;
 	exports views.screen.cart to javafx.fxml;
 	
