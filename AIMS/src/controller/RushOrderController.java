@@ -89,11 +89,7 @@ public class RushOrderController extends BaseController {
 		try {
 			Stage newStage = new Stage();
 			//control and data coupling class RushOrderScreenHandler
-<<<<<<< HEAD
-			RushOrderScreenHandler rushOrderScreen = new RushOrderScreenHandler(newStage, configs.RUSHORDER_SCREEN_PATH, order, message);
-=======
 			RushOrderScreenHandler rushOrderScreen = new RushOrderScreenHandler(newStage, configs.RUSHORDER_SCREEN_PATH, order, shippingInfo);
->>>>>>> MaThienLy20204582
 			rushOrderScreen.setBController(this);    //communication cohesion
 			rushOrderScreen.setPreviousScreen(shippingScreen);
 			rushOrderScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());
