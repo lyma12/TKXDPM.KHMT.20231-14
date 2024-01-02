@@ -29,6 +29,7 @@ import views.screen.BaseScreenHandler;
 import views.screen.cart.MediaHandler;
 import entity.order.order;
 import entity.order.orderMedia;
+import entity.shipping.Shipment;
 
 public class RushOrderScreenHandler extends BaseScreenHandler {
 	private Logger LOGGER = utils.getLogger(RushOrderScreenHandler.class.getName());
@@ -42,11 +43,11 @@ public class RushOrderScreenHandler extends BaseScreenHandler {
 	protected ComboBox<String> minute;
 	protected ComboBox<String> APM;
 	protected ListView<RushOrderItem> listView;
-	protected HashMap<String, String> messages = new HashMap<String, String>();
+	protected Shipment shippingInfo;
 	protected Text validate_error;
 	
 
-	public RushOrderScreenHandler(Stage stage, String screenPath, order order, HashMap<String, String> messages) throws IOException {
+	public RushOrderScreenHandler(Stage stage, String screenPath, order order, Shipment shippingInfo) throws IOException {
 		super(stage, screenPath);
 		this.order = order;
 		this.btn_return = (Button) this.content.lookup("#rush_order_return");
@@ -58,7 +59,7 @@ public class RushOrderScreenHandler extends BaseScreenHandler {
 		this.APM = (ComboBox<String>) this.content.lookup("#rush_order_B");
 		this.listView = (ListView<RushOrderItem>) this.content.lookup("#rush_order_listView");
 		this.validate_error = (Text) this.content.lookup("#validate_error");
-		this.messages = messages;
+		this.shippingInfo = shippingInfo;
 		this.validate_error.setVisible(false);
 		this.btn_return.setOnMouseClicked(e ->{
 			LOGGER.info("Return Cart Screen");
@@ -74,7 +75,7 @@ public class RushOrderScreenHandler extends BaseScreenHandler {
 		setScreenRushOrder();
 	}
 	private void setScreenRushOrder() {
-		String instructions = this.messages.get("instructions");
+		String instructions = this.shippingInfo.getInstructions();
 		if(instructions != null && !instructions.isBlank()) this.instruction.setText(instructions);
 		List<orderMedia> lstMedia = this.order.getLstOrderMediaRushOrder();
 		
@@ -106,15 +107,9 @@ public class RushOrderScreenHandler extends BaseScreenHandler {
 	}
 	
 	private void insertDeliveryRushOrder() {
-		
-		messages.put("hour", this.hour.getValue());
-		messages.put("minute", this.minute.getValue());
-		messages.put("AMP", this.APM.getValue());
-		messages.put("instructions", this.instruction.getText());
-		messages.put("district", this.province.getValue());
 		this.validate_error.setVisible(false);
 		try {
-			this.getBController().validateDeliveryInfo(messages, this.stage, this.order);
+			this.getBController().validateDeliveryInfo(shippingInfo, this.hour.getValue(), this.minute.getValue(), this.APM.getValue(), this.instruction.getText(), this.province.getValue(), this.stage, this.order);
 		} catch (InterruptedException | IOException e) {
 			e.printStackTrace();
 		} catch (InvalidDeliveryInfoException e1) {

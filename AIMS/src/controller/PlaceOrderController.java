@@ -34,6 +34,7 @@ import entity.cart.CartMedia;
 import entity.invoice.Invoice;
 import entity.order.order;
 import entity.order.orderMedia;
+import entity.shipping.Shipment;
 import javafx.stage.Stage;
 import utils.configs;
 import views.screen.BaseScreenHandler;
@@ -80,29 +81,21 @@ public class PlaceOrderController extends BaseController {
 	public Invoice createInvoice(order order) {    //functional cohesion
         return new Invoice(order);
     }
-	public void processDeliveryInfo(HashMap<String, String> info, order order, BaseScreenHandler shippingScreen) throws InterruptedException, IOException{
-        LOGGER.info("Process Delivery Info");
-        LOGGER.info(info.toString());
-        validateDeliveryInfo(info);
-        order.setShippingFees(calculateShippingFee(order, info));
-        if(info.get("rush_order") == "true") {
+	public void processDeliveryInfo(Shipment shippingInfo, order order, BaseScreenHandler shippingScreen) throws InterruptedException, IOException{
+        validateDeliveryInfo(shippingInfo);
+        order.setShippingFees(calculateShippingFee(order, shippingInfo.getProvince()));
+        if(shippingInfo.getRushOrder()) {
         RushOrderController rushOrderController = new RushOrderController();
-		rushOrderController.requestPlaceRushOrder(shippingScreen, order, info);
+		rushOrderController.requestPlaceRushOrder(shippingScreen, order, shippingInfo);
         }
         //control coupling class order
-        order.setDeliveryInfo(info);
+        order.setDeliveryInfo(shippingInfo);
         Invoice invoice = createInvoice(order);     //control coupling class Invoice
         //control and data coupling class InvoiceScreenHandler
-        InvoiceScreenHandler invoiceScreen = new InvoiceScreenHandler(shippingScreen.getStage(), configs.INVOICE_SCREEN_PATH, invoice);
-// code cu:
-//        invoiceScreen.setPreviousScreen(shippingScreen);     
-//		invoiceScreen.setHomeScreenHandler(shippingScreen.getHomeScreenHandler());
-//		invoiceScreen.setScreenTitle("Invoice Screen");
-//		invoiceScreen.setBController(this);
-//		invoiceScreen.show();
+        InvoiceScreenHandler invoiceScreen = new InvoiceScreenHandler(shippingScreen.getStage(), configs.INVOICE_SCREEN_PATH, invoice, shippingInfo);
 
         //show invoice
-        this.display(shippingScreen, invoiceScreen, "Invoice Screen");
+        this.display(invoiceScreen, shippingScreen, "Invoice Screen");
     }
 
     //unnecessary method in class
@@ -112,12 +105,21 @@ public class PlaceOrderController extends BaseController {
     }
 
     //separate validateDeliveryInfo and all its subs method to another class to avoid SRP 
-	private void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
-    	if(!validateName(info.get("name"))) throw new InvalidDeliveryInfoException("name", "invalid");
-    	if(!validatePhoneNumber(info.get("phone"))) throw new InvalidDeliveryInfoException("phone", "invalid");
-    	if(!validateAddress(info.get("province"))) throw new InvalidDeliveryInfoException("province", "invalid");
+	private void validateDeliveryInfo(Shipment shippingInfo) throws InterruptedException, IOException{
+    	if(!validateName(shippingInfo.getName())) throw new InvalidDeliveryInfoException("name", "invalid");
+    	if(!validatePhoneNumber(shippingInfo.getPhone())) throw new InvalidDeliveryInfoException("phone", "invalid");
+    	if(!validateProvince(shippingInfo.getPhone())) throw new InvalidDeliveryInfoException("province", "invalid");
+    	if(validateEmail(shippingInfo.getEmail())) throw new InvalidDeliveryInfoException("email", "invalid");
+    	if(!validateAddress(shippingInfo.getAddress())) throw new InvalidDeliveryInfoException("address", "invalid");
     }
-    
+   
+	private boolean validateEmail(String email) {
+		if(email != null) {
+			String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$";  // Biểu thức chính quy kiểm tra email
+		    return !email.matches(regex);
+		}
+		return true;
+	}
     private boolean validatePhoneNumber(String phoneNumber) {
     	
     	if(phoneNumber.length() == 10) return true;
@@ -132,6 +134,10 @@ public class PlaceOrderController extends BaseController {
     	if(name.length() > 0) return true;
     	return false;
     }
+    private boolean validateProvince(String address) {
+    	if(address.length() > 0) return true;
+    	return false;
+    }
     private boolean validateAddress(String address) {
     	if(address.length() > 0) return true;
     	return false;
@@ -144,7 +150,7 @@ public class PlaceOrderController extends BaseController {
      * giao hàng ở các vị trí khác là 0,5 kg đầu là 30.000 VND.
      * cứ 0.5kg tiếp theo, khách hàng sẽ phải trả thêm 2.500 VND
      * trong trường hợp giao hàng nhanh, khách trả thêm 10.000 VND với mỗi sản phẩm giao hàng nhanh.*/
-	public int calculateShippingFee(order order, HashMap<String, String> deliveryForm ){
+	public int calculateShippingFee(order order, String province ){
   		int fees = 0;
   		float weight = 0.0f;
   		List<orderMedia> lst = order.getlstOrderMedia();
@@ -153,7 +159,6 @@ public class PlaceOrderController extends BaseController {
   		}
 		
 		if(order.getAmount() < 100) {
-			String province = deliveryForm.get("province");
 			if(configs.SHIPPINGFEES_FIRST_22.contains(province)) {
 				if(weight <= 3) {
 					fees = 22* ((int)weight + 1);

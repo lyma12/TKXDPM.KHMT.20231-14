@@ -51,7 +51,7 @@ public class media {
     }
 
     public media getMediaById(int id) throws SQLException{
-        String sql = "SELECT * FROM Media ;";
+        String sql = "SELECT * FROM Media WHERE id = " + id + ";";
         Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);
 		if(res.next()) {
@@ -223,16 +223,9 @@ public class media {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + id + "'" +
-            ", title='" + title + "'" +
-            ", category='" + category + "'" +
-            ", price='" + price + "'" +
-            ", quantity='" + quantity + "'" +
-            ", type='" + type + "'" +
-            ", weight='" + this.weight + "'" + 
-            ", support rush order='" + this.support_rush_order + "'" + 
-            ", imageURL='" + imageURL + "'" +
-            "}";
+        return "Sản phẩm: " + 
+            "\t\tID = " + id + "\n" + 
+        	"\t\tTitle = " + title + "\n"+
+        	"\t\tType = " + type +"\n";
     }    
 }

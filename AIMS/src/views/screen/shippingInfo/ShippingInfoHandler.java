@@ -18,6 +18,7 @@ import common.exception.MediaOrProvinceNotSupportRushOrderException;
 import common.exception.PlaceOrderException;
 import controller.PlaceOrderController;
 import entity.order.order;
+import entity.shipping.Shipment;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.Initializable;
@@ -40,17 +41,15 @@ public class ShippingInfoHandler extends BaseScreenHandler{
 	protected TextField name;
 	protected TextField phone;
 	protected ComboBox<String> province;
+	protected TextField email;
+	protected TextArea address;
 	protected TextArea instructions;
 	protected CheckBox rush_order;
 	protected Text shippingFees;
 	protected Button confirm;
-	protected Text name_error;
-	protected Text phone_error;
-	protected Text province_error;
 	protected Text not_support_rush_order;
 	private boolean send = false;
-	
-	protected HashMap<String, String> messages = new HashMap<String, String>();
+	protected Shipment shippingInfo;
 	protected order order;     //coupling class order
 
 	public ShippingInfoHandler(Stage stage, String screenPath) throws IOException {
@@ -59,15 +58,15 @@ public class ShippingInfoHandler extends BaseScreenHandler{
 		this.name = (TextField) this.content.lookup("#shipping_name");
 		this.phone = (TextField) this.content.lookup("#shipping_phone");
 		this.province = (ComboBox<String>) this.content.lookup("#shipping_menu_province");
+		this.address = (TextArea) this.content.lookup("#address");
+		this.email = (TextField) this.content.lookup("#email");
 		this.instructions = (TextArea) this.content.lookup("#shipping_instructions");
 		this.rush_order = (CheckBox) this.content.lookup("#shipping_rush_order");
 		this.shippingFees = (Text) this.content.lookup("#shipping_fees");
 		this.confirm = (Button) this.content.lookup("#shipping_confirm");
-		this.name_error = (Text) this.content.lookup("#name_error");
-		this.phone_error = (Text) this.content.lookup("#phone_error");
-		this.province_error = (Text) this.content.lookup("#province_error");
 		this.not_support_rush_order = (Text) this.content.lookup("#not_support_rush_order");
 		this.not_support_rush_order.setVisible(false);
+		this.shippingInfo = new Shipment();
 		final BooleanProperty firstTime = new SimpleBooleanProperty(true); // Variable to store the focus on stage load
 		name.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
             if(newValue && firstTime.get()){
@@ -96,33 +95,46 @@ public class ShippingInfoHandler extends BaseScreenHandler{
 	}
 	
 	private void submitDeliveryForm()throws IOException, InterruptedException {
+		if (this.name.getStyle().contains("-fx-border-color: red")) {
+            this.name.setStyle(this.name.getStyle().replace("-fx-border-color: red;", ""));
+        }
+		if (this.phone.getStyle().contains("-fx-border-color: red")) {
+            this.phone.setStyle(this.phone.getStyle().replace("-fx-border-color: red;", ""));
+        }
+		if (this.email.getStyle().contains("-fx-border-color: red")) {
+            this.email.setStyle(this.email.getStyle().replace("-fx-border-color: red;", ""));
+        }
+		if (this.address.getStyle().contains("-fx-border-color: red")) {
+            this.address.setStyle(this.address.getStyle().replace("-fx-border-color: red;", ""));
+        }
+		if (this.province.getStyle().contains("-fx-border-color: red")) {
+            this.province.setStyle(this.province.getStyle().replace("-fx-border-color: red;", ""));
+        }
 		if(!send) {
-		messages.put("name", name.getText());
-		messages.put("phone", phone.getText());
-		messages.put("instructions", instructions.getText());
-		messages.put("province", province.getValue());
-		if(this.rush_order.isSelected()) messages.put("rush_order", "true" );
+		this.shippingInfo.setName(this.name.getText());
+		this.shippingInfo.setEmail(this.email.getText());
+		this.shippingInfo.setAddress(this.address.getText());
+		this.shippingInfo.setInstruction(this.instructions.getText());
+		this.shippingInfo.setPhone(this.phone.getText());
+		this.shippingInfo.setProvince(this.province.getValue());
+		if(this.rush_order.isSelected()) this.shippingInfo.setRushOrder(true);
 		else{
-			messages.put("rush_order", "false");
+			this.shippingInfo.setRushOrder(false);
 			order.resetLstMediaRushOrder();
 		}
 		
 		
 		try {
 			// process and validate delivery info
-			getBController().processDeliveryInfo(messages, order, this);
-			this.name_error.setVisible(false);
-			this.phone_error.setVisible(false);
-			this.province_error.setVisible(false);
+			getBController().processDeliveryInfo(this.shippingInfo, order, this);
+			
 		} catch (InvalidDeliveryInfoException e) {
 			String m = e.getMessage();
-			if(m.equals("name")) this.name_error.setVisible(true);
-			else this.name_error.setVisible(false);
-			if(m.equals("phone")) this.phone_error.setVisible(true);
-			else this.phone_error.setVisible(false);
-			if(m.equals("province")) this.province_error.setVisible(true);
-			else this.province_error.setVisible(false);
-			send = false;
+			if(m.contains("email")) this.email.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+			if(m.contains("province")) this.province.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+			if(m.contains("name")) this.name.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+			if(m.contains("phone")) this.phone.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+			if(m.contains("address")) this.address.setStyle("-fx-border-color: red; -fx-border-width: 2px");
 		} catch (MediaOrProvinceNotSupportRushOrderException exp1) {
 			this.not_support_rush_order.setVisible(true);
 			this.messages.put("rush_order", "false");
@@ -138,9 +150,6 @@ public class ShippingInfoHandler extends BaseScreenHandler{
 	
 	public order getOrder() {
 		return this.order;
-	}
-	public HashMap<String, String> getMessage(){
-		return this.messages;
 	}
 	
 	public void setOrder(order order) {

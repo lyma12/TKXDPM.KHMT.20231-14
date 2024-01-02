@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Map;
@@ -23,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import mail.SendMail;
 import utils.configs;
 import utils.utils;
 import views.screen.BaseScreenHandler;
@@ -46,7 +48,7 @@ public class PaymentController extends BaseController {
 //			paymentScreen.setHomeScreenHandler(invoiceScreen.getHomeScreenHandler());
 //			paymentScreen.setScreenTitle("Payment Screen");
 //			paymentScreen.show();
-			this.display(invoiceScreen, paymentScreen, "Payment Screen");
+			this.display(paymentScreen, invoiceScreen, "Payment Screen");
 			LOGGER.info("Confirmed invoice");
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -59,11 +61,14 @@ public class PaymentController extends BaseController {
 		try {
 			this.interbank = new VNPaySubsystem();
 			PaymentTransaction payment = this.interbank.payOrder(this.card, this.invoice.getAmount(), contents);
-			response.put("RESULT", "Giao dịch thành công!");
-			response.put("MESSAGE", "Đơn hàng sẽ phê duyệt để chuyển đi!");
 			order.saveOrder(invoice.getOrder());
+			invoice.saveInvoice();
+			response.put("RESULT", "Giao dịch thành công!");
+			response.put("MESSAGE", this.invoice.toString());
+			SendMail.createEmail(invoice.toString(), invoice.getOrder().getEmail());
 			Cart.getCart().emptyCart();
 			PaymentTransaction.savePaymentTransaction(payment);
+			
 		}catch(InternalServerErrorException e) {
 			response.put("RESULT", "Giao dịch thất bại!");
 			response.put("MESSAGE", e.getMessage());
@@ -77,6 +82,8 @@ public class PaymentController extends BaseController {
 		}catch(GatewayTimeOutException e) {
 			response.put("RESULT", "Giao dịch thất bại!");
 			response.put("MESSAGE", e.getMessage());
+		} catch(SQLException sql) {
+			
 		}
 		
 		return response;

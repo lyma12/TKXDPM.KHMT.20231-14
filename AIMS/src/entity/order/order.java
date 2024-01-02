@@ -1,16 +1,25 @@
 package entity.order;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import entity.db.AIMSDB;
+import entity.shipping.Shipment;
 import utils.configs;
 
 // functional cohesion
 
 public class order {
+	private int id;
+	private int userId;
 	private int shippingFees;
     private List<orderMedia> lstOrderMedia;
-    private HashMap<String, String> deliveryInfo;
+    private Shipment deliveryInfo;
     private List<orderMedia> lstOrderMediaRushOrder;
 
     public order(){
@@ -55,15 +64,21 @@ public class order {
     public void setShippingFees(int shippingFees) {
         this.shippingFees = shippingFees;
     }
+    public int getId() {
+    	return this.id;
+    }
 
     public int getShippingFees() {
         return shippingFees;
     }
-    public HashMap<String, String> getDeliveryInfo() {
-        return deliveryInfo;
+    public String getDeliveryInfo() {
+        return this.deliveryInfo.toString();
+    }
+    public String getEmail() {
+    	return this.deliveryInfo.getEmail();
     }
 
-    public void setDeliveryInfo(HashMap<String, String> deliveryInfo) {
+    public void setDeliveryInfo(Shipment deliveryInfo) {
         this.deliveryInfo = deliveryInfo;
     }
 
@@ -76,7 +91,63 @@ public class order {
         return (int) (amount + (configs.PERCENT_VAT/100)*amount);         // common coupling
     }
     
-    public static void saveOrder(order order) {
+    public static void saveOrder(order order) throws SQLException {
+    	int deleveryId = Shipment.createNewShipment(order.deliveryInfo);
+    	
+    	// save Order
+    	// get Id Order from deleveryId
+    	int orderId = 1;
+    	String sql = "SELECT COUNT(*) AS total_orders FROM 'Order' WHERE deleveryInfoId = '" + deleveryId + "';";
+    	Statement stm = AIMSDB.getConnection().createStatement();
+    	ResultSet res = stm.executeQuery(sql);
+    	if(res.next()) {
+    		orderId = res.getInt("total_orders") + 1;
+    		order.id = orderId;
+    	}
+    	else throw new SQLException("Lỗi lấy id của order");
+    	//
+    	if(order.userId != 0) {
+    		sql = "INSERT INTO 'Order' (id, deleveryInfoId, shippingFees, user_id, accept) VALUES (" + 
+    	          + orderId + " , " + deleveryId + " , '" + order.shippingFees + "', " + order.userId + ", 'false');";
+    		stm.executeUpdate(sql);
+    	}
+    	else {
+    		sql = "INSERT INTO 'Order' (id, deleveryInfoId, shippingFees, accept) VALUES (" + 
+      	          + orderId + " , " + deleveryId + " , '" + order.shippingFees + "', 'false');";
+      		stm.executeUpdate(sql);
+    	}
+    	
+    	sql = "SELECT id FROM 'Order' WHERE id = " + orderId + ";";
+    	res = stm.executeQuery(sql);
+    	if(res.next()) {
+    		for(orderMedia ob : order.lstOrderMedia) {
+        		orderMedia.saveOrderMedia(ob, orderId);
+        	}
+        	for(orderMedia ob: order.lstOrderMediaRushOrder) {
+        		orderMedia.saveOrderMedia(ob, orderId);
+        	}
+    	}
+    	else throw new SQLException("Lỗi thêm dữ liệu!");
     	
     }
+    
+    @Override
+    public String toString() {
+    	String message =  "Thông tin đơn hàng: \n" + 
+    			"ID: " + this.id + "\n" + 
+    			"Tiền ship: " + this.shippingFees + "VND\n" + 
+    			"Danh sách sản phẩm đã đặt hàng: \n"; 
+    	for(orderMedia i : this.lstOrderMedia) {
+    		message += i.toString();
+    	}
+    	message += "Các sản phẩm giao hàng nhanh: \n";
+    	for(orderMedia i : this.lstOrderMediaRushOrder) {
+    		message += i.toString();
+    	}
+    	message += this.deliveryInfo.toString();
+    	return message;
+    }
+    
+    
+
 }

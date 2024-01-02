@@ -42,22 +42,22 @@
                <children>
                   <AnchorPane prefHeight="520.0" prefWidth="800.0">
                      <children>
-                        <Text layoutX="150.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" AnchorPane.bottomAnchor="432.7578125" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="572.015625" AnchorPane.topAnchor="50.0">
+                        <Text layoutX="150.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="572.015625" AnchorPane.topAnchor="40.0">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="162.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" AnchorPane.bottomAnchor="362.7578125" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="566.73828125" AnchorPane.topAnchor="120.0">
+                        <Text layoutX="162.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="566.73828125" AnchorPane.topAnchor="100.0">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="151.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Province/&#10;city" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="250.0">
+                        <Text layoutX="151.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Province/&#10;city" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="178.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shipping&#10;instructions" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="350.0">
+                        <Text layoutX="178.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shipping&#10;instructions" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="380.0">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
@@ -67,58 +67,48 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="shipping_name" layoutX="269.0" layoutY="89.0" prefHeight="60.0" prefWidth="350.0" promptText="Nguyen Van An" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
+                        <TextField fx:id="shipping_name" layoutX="269.0" layoutY="89.0" prefHeight="50.0" prefWidth="350.0" promptText="Nguyen Van An" AnchorPane.bottomAnchor="430.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="18.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="shipping_phone" layoutX="425.0" layoutY="175.0" prefHeight="60.0" prefWidth="350.0" promptText="0916039064" AnchorPane.bottomAnchor="350.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="110.0">
+                        <TextField fx:id="shipping_phone" layoutX="425.0" layoutY="175.0" prefHeight="50.0" prefWidth="350.0" promptText="0916039064" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="18.0" />
                            </font>
                         </TextField>
-                        <TextArea fx:id="shipping_instructions" layoutX="405.0" layoutY="287.0" prefHeight="100.0" prefWidth="400.0" promptText="so 7, Ngo Ao dai 1, Cau Den" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="350.0">
+                        <TextArea fx:id="shipping_instructions" layoutX="405.0" layoutY="287.0" prefHeight="100.0" prefWidth="400.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="370.0">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="18.0" />
                            </font>
                         </TextArea>
-                        <ComboBox fx:id="shipping_menu_province" layoutX="611.0" layoutY="225.0" prefHeight="50.0" prefWidth="250.0" visibleRowCount="6" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="260.0" />
-                        <Text fx:id="name_error" fill="RED" layoutX="254.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Điền thông tin" visible="false" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="579.0" AnchorPane.topAnchor="90.0">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="phone_error" fill="RED" layoutX="149.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Điền thông tin" visible="false" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="579.0" AnchorPane.topAnchor="160.0">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="province_error" fill="RED" layoutX="149.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Điền thông tin" visible="false" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="335.0">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Text>
+                        <ComboBox fx:id="shipping_menu_province" layoutX="611.0" layoutY="225.0" prefHeight="50.0" prefWidth="250.0" visibleRowCount="6" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="225.0" />
                         <Text fx:id="not_support_rush_order" fill="RED" layoutX="412.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="địa chỉ không và sản phẩm không hỗ trợ giao hàng nhanh" visible="false" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="485.0">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Text>
                         <CheckBox fx:id="shipping_rush_order" layoutX="400.0" layoutY="413.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="430.0" AnchorPane.topAnchor="480.0" />
-                        <Text layoutX="164.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="566.73828125" AnchorPane.topAnchor="190.0">
+                        <Text layoutX="164.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="566.73828125" AnchorPane.topAnchor="150.0">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="email" layoutX="375.0" layoutY="186.0" prefHeight="60.0" prefWidth="350.0" promptText="linhlinh17122002@gmail.com" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="180.0">
+                        <TextField fx:id="email" layoutX="375.0" layoutY="186.0" prefHeight="50.0" prefWidth="350.0" promptText="linhlinh17122002@gmail.com" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </TextField>
-                        <Text fx:id="email_error" fill="RED" layoutX="154.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Điền thông tin " visible="false" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="230.0">
+                        <Text layoutX="149.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" AnchorPane.topAnchor="300.0">
                            <font>
-                              <Font size="11.0" />
+                              <Font name="System Bold" size="28.0" />
                            </font>
                         </Text>
+                        <TextArea fx:id="address" layoutX="405.0" layoutY="237.0" prefHeight="70.0" prefWidth="350.0" promptText="so 7, Ngo Ao dai 1, Cau Den" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="290.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextArea>
                      </children>
                   </AnchorPane>
                   <Line endX="-101.41371154785156" endY="626.807861328125" startX="-101.41366577148438" startY="1076.767333984375">

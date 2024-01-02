@@ -2,15 +2,20 @@ package entity.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
+import java.util.Properties;
 import java.util.logging.Logger;
 
-import entity.media.media;
-import utils.configs;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import utils.utils;
+
 
 public class AIMSDB {
 	private static Logger LOGGER = utils.getLogger(Connection.class.getName());
@@ -28,11 +33,12 @@ public class AIMSDB {
         } 
         return connect;
     }
-    
+    //dvkm ovbt dpej ukcn
 
     public static void main(String[] args) {
-    	AIMSDB.getConnection();
     	
-        
-    }
+    	
+    }   
+    
+    
 }
