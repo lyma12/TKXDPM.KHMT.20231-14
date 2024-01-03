@@ -1,20 +1,10 @@
 package entity.db;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
 import utils.utils;
+
 
 
 public class AIMSDB {
@@ -36,7 +26,6 @@ public class AIMSDB {
     //dvkm ovbt dpej ukcn
 
     public static void main(String[] args) {
-    	
     	
     }   
     

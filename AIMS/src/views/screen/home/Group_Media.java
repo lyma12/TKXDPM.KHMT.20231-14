@@ -45,7 +45,7 @@ public class Group_Media extends FXMLScreenHandler {
 			List<media> itemList = bController.getListMediaByType(type);
 			for (Object item : itemList) {
 				media media = (media) item;
-				MediaHandler mediaHandler = new MediaHandler(configs.HOME_MEDIA_ITEM, media, home);
+				MediaHandler mediaHandler = new MediaHandler(configs.HOME_MEDIA_ITEM, media, home.getBController().checkMediaInCart(media));
 				this.listview_item_media.getItems().add(mediaHandler);
 				this.listview_item_media.setCellFactory(
 						listView -> new ListCell<MediaHandler>() {

@@ -33,7 +33,27 @@ public class media {
     public media() throws SQLException{
         stm = AIMSDB.getConnection().createStatement();
     }
-
+    
+    public static List<media> searchMedia (String sql) throws SQLException{
+    	Statement stm = AIMSDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery(sql);
+        List<media> r = new ArrayList<media>();
+		while(res.next()) {
+			media m  = new media()
+                .setId(res.getInt("id"))
+                .setTitle(res.getString("title"))
+                .setQuantity(res.getInt("quantity"))
+                .setCategory(res.getString("category"))
+                .setMediaURL(res.getString("imageUrl"))
+                .setWeight(res.getFloat("weight"))
+                .setSupportRushOrder(res.getBoolean("support_rush_order"))
+                .setPrice(res.getInt("price"))
+                .setType(res.getString("type"));
+			r.add(m);
+        }
+        return r;
+    }
+    
     public media (int id, String title, String category, int price, int quantity, String type ) throws SQLException{
         this.id = id;
         this.title = title;
@@ -101,17 +121,13 @@ public class media {
     	return null;
     }
     
-    public List<String> getTypeMedia() throws SQLException{
+    public static List<String> getTypeMedia() throws SQLException{
     	Statement stm = AIMSDB.getConnection().createStatement();
-    	ResultSet res = stm.executeQuery("select type from media");
+    	ResultSet res = stm.executeQuery("select distinct type from media");
     	ArrayList<String> type = new ArrayList<>();
-    	Set<String> medium = new HashSet<>();
     	while(res.next()) {
     		String str = res.getString("type");
-    		medium.add(str);
-    	}
-    	for(String item: medium) {
-    		type.add(item);
+    		type.add(str);
     	}
     	return type;
     }

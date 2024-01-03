@@ -32,7 +32,7 @@ public class MediaHandler extends FXMLScreenHandler {
 	private static Logger LOGGER = utils.getLogger(MediaHandler.class.getName());
 	private media media;
 
-	public MediaHandler (String screenPath, media media, HomeScreenHandler home)throws SQLException, IOException {
+	public MediaHandler (String screenPath, media media, CartMedia mediaInCart)throws SQLException, IOException {
 		super(screenPath);
 		this.media = media;
 		this.btn_add_to_cart = (Button) this.content.lookup("#btn_add_to_cart");
@@ -44,7 +44,6 @@ public class MediaHandler extends FXMLScreenHandler {
 			try {
 				if(spinner_media_home.getValue() > media.getQuantity()) throw new MediaNotAvailableException();
 				Cart cart = Cart.getCart();
-				CartMedia mediaInCart = home.getBController().checkMediaInCart(media);
 				if(mediaInCart != null) {
 					mediaInCart.setQuantity(mediaInCart.getQuantity() + 1);
 					
