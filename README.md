@@ -91,8 +91,6 @@
 
 </details>
 
----
-
 <details>
   <summary>W12: 04/12/2023~10/12/2023 </summary>
 <br>
@@ -239,4 +237,30 @@
     + Các đối tượng của class con như paymentcontroller, placeordercontroller, viewcartcontroller, rushordercontroller, homecontroller có thể thay thể đối tượng lớp cha basecontroller mà không làm mất đi tính đúng đúng của chương trình.
     + Tương tự đối với các class con của baseScreenHandler.
 
+</details>
+</details>
+
+<details>
+  <summary>Final Capstone Project</summary>
+<br>
+<details>
+    <summary>Nguyễn Đức Long 20194100</summary>
+
+    - Tính năng phụ trách: 
+- CRUD Product
+
+    - Công việc chi tiết:
+- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/10]()
+    - Mô tả công việc cụ thể:
+        1. Use case diagrams
+        2. Class diagram
+        3. Activity diagrams
+        4. Sequence diagrams
+        5. Tài liệu đặc tả thiết kế
+        6. Interface design: Subsystem và GUI
+        7. Data modeling: ER diagram và database design
+        8. Unit test
+        9. final_report.pdf: bản report cuối cùng
+<br>
+</details>
 </details>
