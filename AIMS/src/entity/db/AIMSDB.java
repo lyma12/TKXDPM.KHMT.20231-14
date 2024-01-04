@@ -1,9 +1,9 @@
 package entity.db;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.logging.Logger;
 import utils.utils;
+
 
 
 public class AIMSDB {
@@ -26,7 +26,6 @@ public class AIMSDB {
 
     public static void main(String[] args) {
     	AIMSDB.getConnection();
-    	
     	
     }   
     
