@@ -250,7 +250,7 @@
 - CRUD Product
 
     - Công việc chi tiết:
-- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/10]()
+- Pull Request(s): [https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/15]()
     - Mô tả công việc cụ thể:
         1. Use case diagrams
         2. Class diagram
