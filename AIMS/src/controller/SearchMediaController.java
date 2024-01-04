@@ -17,11 +17,12 @@ public class SearchMediaController extends HomeController {
 	private Suggestion suggestion;
 	
 	
-	public void processSearch(Stage stage, BaseScreenHandler prev) throws SQLException, IOException {
+	public void processSearch(Stage stage, BaseScreenHandler prev, String text) throws SQLException, IOException {
 		suggestion = new Suggestion();
 		List<String> list =  media.getTypeMedia();
-		SearchScreen searchScreen = new SearchScreen(stage, suggestion, list);
+		SearchScreen searchScreen = new SearchScreen(stage, suggestion, list, text);
 		this.display(searchScreen, prev, "Search Screen");
+		searchScreen.search();
 	}
 	
 	public List<media> search(String query, int offset) throws SQLException {
@@ -34,7 +35,7 @@ public class SearchMediaController extends HomeController {
 		if(this.suggestion.getType() != null && !this.suggestion.getType().isBlank()) {
 			sql += " and type = '" + this.suggestion.getType() + "' ";
 		}
-		sql += " limit 5 offset " + offset + ";";
+		sql += " limit 6 offset " + offset + ";";
 		return media.searchMedia(sql);
 	}
 	public void sortByTitle(List<media> l) {

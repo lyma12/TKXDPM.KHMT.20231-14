@@ -56,9 +56,11 @@ public class SearchScreen extends BaseScreenHandler {
 	private List<media> listMedia;
 	private String query;
 
-	public SearchScreen(Stage stage, Suggestion suggestion, List<String> type) throws IOException {
+	public SearchScreen(Stage stage, Suggestion suggestion, List<String> type, String text) throws IOException, SQLException {
 		super(stage, configs.SEARCH_SCREEN);
+		type.add("All");
 		this.suggestions = suggestion;
+		this.searchText.setText(text);
 		this.btnReturn.setOnMouseClicked( e -> this.getPreviousScreen().show());
 		this.minPrice.setOnKeyReleased(event -> handlePriceChange(this.minPrice));
 		this.maxPrice.setOnKeyReleased(event -> handlePriceChange(this.maxPrice));
@@ -66,6 +68,9 @@ public class SearchScreen extends BaseScreenHandler {
 		this.sort.getItems().setAll(sortType);
 		this.sort.setOnAction(e -> {
 			this.sortMedia();
+		});
+		this.searchByType.setOnAction(e ->{
+			this.search();
 		});
 		this.more.setOnMouseClicked(e -> getMoreMedia());
 		this.btnSearch.setOnMouseClicked(e -> search());
@@ -95,7 +100,7 @@ public class SearchScreen extends BaseScreenHandler {
 	}
 	
 	
-	private void search() {
+	public void search() {
 		this.listMedia.clear();
 		if(!this.maxPrice.getText().isBlank()) {
 			this.suggestions.setMaxPrice(Integer.parseInt(this.maxPrice.getText()));
@@ -104,7 +109,10 @@ public class SearchScreen extends BaseScreenHandler {
 			this.suggestions.setMinPrice(Integer.parseInt(this.minPrice.getText()));
 		}
 		if(this.rushOrder.isSelected()) this.suggestions.setRushOrder(true);
-		if(this.searchByType.getValue() != null) this.suggestions.setType(this.searchByType.getValue());
+		if(this.searchByType.getValue() != null) {
+			if(!this.searchByType.getValue().contains("All")) this.suggestions.setType(this.searchByType.getValue());
+			else this.suggestions.setType(null);
+		}
 		try {
 			query = "'%" + this.searchText.getText() + "%'";
 			this.listMedia = this.getBController().search( "'%" + this.searchText.getText() + "%'", this.listMedia.size());

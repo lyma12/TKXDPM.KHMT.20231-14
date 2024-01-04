@@ -1,6 +1,7 @@
 package views.screen.home;
 
 import javafx.scene.control.ListCell;
+import controller.SearchMediaController;
 import controller.ViewCartController;
 import controller.HomeControl.HomeController;
 import entity.user.User;
@@ -19,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import utils.utils;
@@ -30,6 +32,10 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
 	private Button btn_cart;
 	@FXML
 	private ListView<Group_Media> listview_group_media;
+	@FXML
+	private Button searchBtn;
+	@FXML
+	private TextField searchText;
 	private User user;
 	public static Logger LOGGER = utils.getLogger(HomeScreenHandler.class.getName());
 	protected AnchorPane content; 
@@ -92,6 +98,16 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
                 throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
             }
         });
+		this.searchBtn.setOnMouseClicked( e ->{
+			try {
+	    	SearchMediaController controller = new SearchMediaController();
+	    	controller.processSearch(this.getStage(), this, this.searchText.getText());
+	    	}catch(IOException e1) {
+	    		e1.printStackTrace();
+	    	}catch(SQLException e1) {
+	    		e1.printStackTrace();
+	    	}
+		});
 	
 	}
 	
