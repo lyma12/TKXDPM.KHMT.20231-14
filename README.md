@@ -282,4 +282,15 @@
     - Các tài liệu: Activity diagram, Sequence diagram, Class diagram liên quan đến use case CRUD sản phẩm, quản lý đơn hàng.
     
 </details>
+<details>
+<summary>Vũ Bá Lượng 20194109</summary>
+<br>
+
+- Assigned tasks:
+    - Thực hiện báo cáo của phần usecase quản lý đơn hàng
+    - Các tài liệu: Activity diagram, Sequence diagram, Class diagram liên quan đến use case quản lý đơn hàng.
+- Implementation details:
+    - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/17
+<br>
+</details>
 </details>
