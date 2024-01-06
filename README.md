@@ -256,7 +256,7 @@
   - Các tài liệu: Activity diagram, Sequence diagram, Class diagram liên quan đến use case tìm kiếm và đăng nhập và  ER diagram, logical data diagram.
   - Quay video demo luồng chính.
 - Implementation details:
-  - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/5
+  - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/16
   - Specific implementation details:
     - CartMedia: functional cohesion
     - Cart: functional cohesion
@@ -267,3 +267,18 @@
     - BaseScreenHandler: functional cohesion
 <br>
 </details>  
+<details>
+    <summary>Nguyễn Đức Long 20194100</summary>
+    <br>
+    - Assigned tasks:
+    - Thực hiện báo cáo của phần usecase CRUD sản phẩm
+    - Các tài liệu: Activity diagram, Sequence diagram, Class diagram liên quan đến use case CRUD sản phẩm.
+
+<details>
+    <summary>Trần Văn Long 20200372</summary>
+    <br>
+    - Assigned tasks:
+    - Thực hiện báo cáo của phần usecase CRUD người dùng, quản lý đơn hàng
+    - Các tài liệu: Activity diagram, Sequence diagram, Class diagram liên quan đến use case CRUD sản phẩm, quản lý đơn hàng.
+    
+
