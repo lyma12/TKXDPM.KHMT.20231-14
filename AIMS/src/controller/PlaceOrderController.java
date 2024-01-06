@@ -35,6 +35,7 @@ import entity.invoice.Invoice;
 import entity.order.order;
 import entity.order.orderMedia;
 import entity.shipping.Shipment;
+import entity.user.User;
 import javafx.stage.Stage;
 import utils.configs;
 import views.screen.BaseScreenHandler;
@@ -42,18 +43,18 @@ import views.screen.BaseScreenHandler;
 public class PlaceOrderController extends BaseController {
 	
 	private static Logger LOGGER = utils.utils.getLogger(PlaceOrderController.class.getName());
+	private User user;
 	public void placeOrder(BaseScreenHandler cartScreen) throws SQLException{     //data coupling class CartScreenHandler
         Cart.getCart().checkAvailabilityOfProduct();     //control coupling class Cart
         if(Cart.getCart().getListMedia().size() <= 0) throw new ViewCartException();
         try {
         	order order = createOrder();
             //coupling class ShippingInfoHandler
-			ShippingInfoHandler shippingScreenHandler = new ShippingInfoHandler(cartScreen.getStage() , configs.SHIPPING_SCREEN_PATH);
+			ShippingInfoHandler shippingScreenHandler = new ShippingInfoHandler(cartScreen.getStage() , configs.SHIPPING_SCREEN_PATH, order);
 //			shippingScreenHandler.setPreviousScreen(cartScreen);
 //			shippingScreenHandler.setHomeScreenHandler(cartScreen.getHomeScreenHandler());
 //			shippingScreenHandler.setScreenTitle("Shipping Screen");
 //			shippingScreenHandler.setBController(this);
-			shippingScreenHandler.setOrder(order);
 //			shippingScreenHandler.show();
 			this.display(shippingScreenHandler, cartScreen, "Shipping Screen");
 
@@ -76,8 +77,12 @@ public class PlaceOrderController extends BaseController {
                                                    cartMedia.getPrice());    
             order.getlstOrderMedia().add(orderMedia);    //sequential cohesion
         }
+        order.setUser(user);
         return order;
     }
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public Invoice createInvoice(order order) {    //functional cohesion
         return new Invoice(order);
     }

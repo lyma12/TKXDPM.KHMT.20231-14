@@ -42,10 +42,12 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
 
 	public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
+		this.setProfile(this.user, stage);
 	}
 	public HomeScreenHandler(Stage stage, String screenPath, User user, HomeController controller) throws IOException {
 		super(stage, screenPath);
 		this.user = user;
+		this.setProfile(this.user, stage);
 		this.setBController(controller);
 	}
 	public HomeController getBController() {
@@ -59,7 +61,6 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		if(this.getBController() == null) setBController(new HomeController());
-		this.setProfile(this.user, stage);
 		try {
 			List<String> typeOfMedia = getBController().getAllTypeMedia();
 			for(String item: typeOfMedia) {
@@ -93,6 +94,7 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
                 cartScreen.setHomeScreenHandler(this);
                 cartScreen.setBController(new ViewCartController());
                 cartScreen.requestToViewCart(this);
+                if(this.user != null) cartScreen.setUser(this.user);
             } catch (IOException e1) {
             	e1.printStackTrace();
                 throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));

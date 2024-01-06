@@ -13,6 +13,7 @@ public class User {
     private String phone;
     private String role;
     private String ho_ten;
+    private int userId;
     
     public static User findUser(String email) throws SQLException {
     	Statement pstm = AIMSDB.getConnection().createStatement();
@@ -25,6 +26,7 @@ public class User {
 	    			.setusername(res.getString("username"))
 	    			.setEmail(res.getString("email"))
 	    			.setAddress(res.getString("address"))
+	    			.setUserId(res.getInt("id"))
 	    			.setHoten(res.getString("ho_ten"));
 	    }
     	return null;
@@ -76,6 +78,10 @@ public class User {
     public String getEmail() {
         return this.email;
     }
+    public User setUserId(int id) {
+    	this.userId = id;
+    	return this;
+    }
 
     protected User setEmail(String email) {
         this.email = email;
@@ -101,5 +107,8 @@ public class User {
     }
     public String getRole() {
     	return this.role;
+    }
+    public int getUserId() {
+    	return this.userId;
     }
 }
