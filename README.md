@@ -240,3 +240,30 @@
     + Tương tự đối với các class con của baseScreenHandler.
 
 </details>
+---
+
+<details>
+  <summary>W16: 01/01/2024~707/01/2024 </summary>
+<br>
+<details>
+<summary>Mã Thiên Lý</summary>
+<br>
+
+- Assigned tasks:
+  - Thực hiện báo cáo final report
+  - code use case tìm kiếm, đăng nhập
+  - Tạo data base
+  - Các tài liệu: Activity diagram, Sequence diagram, Class diagram liên quan đến use case tìm kiếm và đăng nhập và  ER diagram, logical data diagram.
+  - Quay video demo luồng chính.
+- Implementation details:
+  - Pull Request(s): https://github.com/lyma12/TKXDPM.KHMT.20231-14/pull/5
+  - Specific implementation details:
+    - CartMedia: functional cohesion
+    - Cart: functional cohesion
+    - BaseController: functional cohesion
+    - Invoice: functional cohesion
+    - order: functional cohesion
+    - orderMedia: functional cohesion
+    - BaseScreenHandler: functional cohesion
+<br>
+</details>  
