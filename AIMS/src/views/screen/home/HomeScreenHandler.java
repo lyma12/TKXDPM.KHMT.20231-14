@@ -32,10 +32,6 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
 	private Button btn_cart;
 	@FXML
 	private ListView<Group_Media> listview_group_media;
-	@FXML
-	private Button searchBtn;
-	@FXML
-	private TextField searchText;
 	private User user;
 	public static Logger LOGGER = utils.getLogger(HomeScreenHandler.class.getName());
 	protected AnchorPane content; 

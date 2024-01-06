@@ -104,6 +104,8 @@ public class configs {
 		public static final String HOME_MANAGER_SCREEN = "/views/fxml/home_manager.fxml";
 		public static final String HOME_BOTH_SCREEN = "/views/fxml/home_both.fxml";
 		public static final String SEARCH_SCREEN = "/views/fxml/search.fxml";
+		public static final String USER_SCREEN = "/views/fxml/UserHandler.fxml";
+		public static final String MANAGER_MEDIA = "/views/fxml/manager_media.fxml";
 		public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
 		
 		public static List<String> SHIPPINGFEES_FIRST_22 =  Arrays.asList("Hà Nội", "Hồ Chí Minh");

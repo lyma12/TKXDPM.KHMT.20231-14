@@ -3,6 +3,8 @@ package entity.user;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import entity.db.AIMSDB;
 
@@ -30,6 +32,25 @@ public class User {
 	    			.setHoten(res.getString("ho_ten"));
 	    }
     	return null;
+    }
+    
+    public static List<User> getAllUser() throws SQLException {
+    	Statement pstm = AIMSDB.getConnection().createStatement();
+		String sql = "SELECT * FROM User";
+	    ResultSet res = pstm.executeQuery(sql);
+	    List<User> r = new ArrayList<User>();
+	    while(res.next()) {
+	    	User u =  new User()
+	    			.setRole(res.getString("role"))
+	    			.setPhone(res.getString("phone"))
+	    			.setusername(res.getString("username"))
+	    			.setEmail(res.getString("email"))
+	    			.setAddress(res.getString("address"))
+	    			.setUserId(res.getInt("id"))
+	    			.setHoten(res.getString("ho_ten"));
+	    	r.add(u);
+	    }
+    	return r;
     }
     
     public User() {
@@ -110,5 +131,8 @@ public class User {
     }
     public int getUserId() {
     	return this.userId;
+    }
+    public String getHoten() {
+    	return this.ho_ten;
     }
 }

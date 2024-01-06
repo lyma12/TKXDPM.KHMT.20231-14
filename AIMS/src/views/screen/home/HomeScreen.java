@@ -6,6 +6,7 @@ import controller.HomeControl.HomeController;
 import entity.user.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -24,7 +25,10 @@ public class HomeScreen extends BaseScreenHandler {
 	protected Button btnLogIn;
 	@FXML
 	protected ImageView imageLogIn;
-	
+	@FXML
+	protected TextField searchText;
+	@FXML
+	protected Button searchBtn;
 
 	public HomeScreen(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);

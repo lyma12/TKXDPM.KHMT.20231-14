@@ -24,7 +24,9 @@ public class HomeController extends BaseController implements IHomeController {
 	public List<String> getAllTypeMedia() throws SQLException { // Functional Cohesion
 		return new media().getTypeMedia();
 	}
-
+	public List<User> getAllUser() throws SQLException{
+		return User.getAllUser();
+	}
 	public List<media> getListMediaByType(String type) throws SQLException { // Functional Cohesion
 		return new media().getMediaByType(type);
 	}

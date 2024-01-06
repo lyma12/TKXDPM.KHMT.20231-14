@@ -20,6 +20,7 @@ public class BaseController {
         return Cart.getCart().getListMedia();            
     }
 	
+	
 	protected void display(BaseScreenHandler screen, BaseScreenHandler previousScreen, String title ) {
 		screen.setBController(this);
 		screen.setPreviousScreen(previousScreen);

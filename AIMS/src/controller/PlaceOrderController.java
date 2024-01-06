@@ -51,11 +51,6 @@ public class PlaceOrderController extends BaseController {
         	order order = createOrder();
             //coupling class ShippingInfoHandler
 			ShippingInfoHandler shippingScreenHandler = new ShippingInfoHandler(cartScreen.getStage() , configs.SHIPPING_SCREEN_PATH, order);
-//			shippingScreenHandler.setPreviousScreen(cartScreen);
-//			shippingScreenHandler.setHomeScreenHandler(cartScreen.getHomeScreenHandler());
-//			shippingScreenHandler.setScreenTitle("Shipping Screen");
-//			shippingScreenHandler.setBController(this);
-//			shippingScreenHandler.show();
 			this.display(shippingScreenHandler, cartScreen, "Shipping Screen");
 
 			
