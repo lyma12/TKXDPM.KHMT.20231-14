@@ -9,10 +9,12 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.control.textfield.TextFields;
 
-
+import common.exception.ViewCartException;
 import controller.SearchMediaController;
+import controller.ViewCartController;
 import entity.media.Suggestion;
 import entity.media.media;
+import entity.user.User;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
@@ -25,6 +27,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import utils.configs;
 import views.screen.BaseScreenHandler;
+import views.screen.cart.CartScreenHandler;
+import views.screen.home.HomeScreenHandler;
 import views.screen.home.MediaHandler;
 
 public class SearchScreen extends BaseScreenHandler {
@@ -50,13 +54,16 @@ public class SearchScreen extends BaseScreenHandler {
 	protected ListView<MediaHandler> mediaShow;
 	@FXML
 	protected Button more;
+	@FXML
+	protected Button btnCart;
 	private List<String> sortType = Arrays.asList("Title", "Price");
 	private Suggestion suggestions;
 	private AutoCompletionBinding<String> binding;
 	private List<media> listMedia;
 	private String query;
+	private User user;
 
-	public SearchScreen(Stage stage, Suggestion suggestion, List<String> type, String text) throws IOException, SQLException {
+	public SearchScreen(Stage stage, Suggestion suggestion, List<String> type, String text, User user) throws IOException, SQLException {
 		super(stage, configs.SEARCH_SCREEN);
 		type.add("All");
 		this.suggestions = suggestion;
@@ -75,8 +82,22 @@ public class SearchScreen extends BaseScreenHandler {
 		this.more.setOnMouseClicked(e -> getMoreMedia());
 		this.btnSearch.setOnMouseClicked(e -> search());
 		this.listMedia = new ArrayList<media>();
+		this.btnCart.setOnMouseClicked(e ->{
+			CartScreenHandler cartScreen;
+	           try {
+	                cartScreen = new CartScreenHandler(this.stage, configs.CART_SCREEN_PATH);
+	                cartScreen.setHomeScreenHandler((HomeScreenHandler) this.getPreviousScreen());
+	                cartScreen.setBController(new ViewCartController());
+	                cartScreen.requestToViewCart(this.getHomeScreenHandler());
+	                if(this.user != null) cartScreen.setUser(this.user);
+	            } catch (IOException e1) {
+	            	e1.printStackTrace();
+	                throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+	            }
+		});
 		setSearchText();
 	}
+	
 	
 	private void sortMedia() {
 		try {

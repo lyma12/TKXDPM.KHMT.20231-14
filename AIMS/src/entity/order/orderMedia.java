@@ -35,11 +35,10 @@ public class orderMedia {
     
     @Override
     public String toString() {
-        return "{" +
-            "  media='" + media + "'" +
-            ", quantity='" + quantity + "'" +
-            ", price='" + price + "'" +
-            "}";
+        return 
+            media.toString() + 
+            " quantity=" + quantity + ";\n" +
+            " price=" + price + ";\n";
     }
     
     public media getMedia() {

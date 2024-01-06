@@ -32,7 +32,7 @@
                <font>
                   <Font size="20.0" />
                </font></TextField>
-            <Button layoutX="1030.0" layoutY="20.0" mnemonicParsing="false">
+            <Button fx:id="btnCart" layoutX="1030.0" layoutY="20.0" mnemonicParsing="false">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -33,6 +33,9 @@ public class order {
     }
     
     public void resetLstMediaRushOrder() {
+    	for(orderMedia item: this.lstOrderMediaRushOrder) {
+    		this.lstOrderMedia.add(item);
+    	}
     	this.lstOrderMediaRushOrder = new ArrayList<>();
     }
     
@@ -94,7 +97,6 @@ public class order {
     
     public static void saveOrder(order order) throws SQLException {
     	int deleveryId = Shipment.createNewShipment(order.deliveryInfo);
-    	
     	// save Order
     	// get Id Order from deleveryId
     	int orderId = 1;
@@ -141,7 +143,7 @@ public class order {
     @Override
     public String toString() {
     	String message =  "Thông tin đơn hàng: \n" + 
-    			"ID: " + this.id + "\n" + 
+    			"ID: " + this.id + "-" + this.deliveryInfo.getID() + ";\n" + 
     			"Tiền ship: " + this.shippingFees + "VND\n" + 
     			"Danh sách sản phẩm đã đặt hàng: \n"; 
     	for(orderMedia i : this.lstOrderMedia) {

@@ -15,6 +15,7 @@ public class Shipment {
 	private String email;
 	private Boolean rush_order;
 	private String hours;
+	private int ID;
 	public Shipment() {
 		super();
 	}
@@ -29,6 +30,9 @@ public class Shipment {
 	}
 	public String getHours() {
 		return this.hours;
+	}
+	public int getID() {
+		return this.ID;
 	}
 	public String getEmail() {
 		return this.email;
@@ -108,6 +112,7 @@ public class Shipment {
         	stm.executeUpdate(sql);
         	try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
+                	shippingInfo.ID = generatedKeys.getInt(1);
                     return generatedKeys.getInt(1);
                 } else {
                     throw new SQLException("Không thể lấy ID vừa được tạo");

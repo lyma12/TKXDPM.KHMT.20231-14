@@ -63,7 +63,8 @@ public class RushOrderScreenHandler extends BaseScreenHandler {
 		this.validate_error.setVisible(false);
 		this.btn_return.setOnMouseClicked(e ->{
 			LOGGER.info("Return Cart Screen");
-			this.getPreviousScreen().show();
+			this.order.resetLstMediaRushOrder();
+			this.getStage().close();
 		});
 		
 		this.province.getItems().addAll(configs.DISTRICT_HA_NOI);

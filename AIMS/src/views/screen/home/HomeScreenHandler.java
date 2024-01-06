@@ -99,7 +99,7 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
 		this.searchBtn.setOnMouseClicked( e ->{
 			try {
 	    	SearchMediaController controller = new SearchMediaController();
-	    	controller.processSearch(this.getStage(), this, this.searchText.getText());
+	    	controller.processSearch(this.getStage(), this, this.searchText.getText(), user);
 	    	}catch(IOException e1) {
 	    		e1.printStackTrace();
 	    	}catch(SQLException e1) {

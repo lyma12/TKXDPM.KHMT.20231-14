@@ -8,6 +8,7 @@ import java.util.List;
 import controller.HomeControl.HomeController;
 import entity.media.Suggestion;
 import entity.media.media;
+import entity.user.User;
 import javafx.stage.Stage;
 import views.screen.BaseScreenHandler;
 import views.screen.search.SearchScreen;
@@ -17,10 +18,10 @@ public class SearchMediaController extends HomeController {
 	private Suggestion suggestion;
 	
 	
-	public void processSearch(Stage stage, BaseScreenHandler prev, String text) throws SQLException, IOException {
+	public void processSearch(Stage stage, BaseScreenHandler prev, String text, User user) throws SQLException, IOException {
 		suggestion = new Suggestion();
 		List<String> list =  media.getTypeMedia();
-		SearchScreen searchScreen = new SearchScreen(stage, suggestion, list, text);
+		SearchScreen searchScreen = new SearchScreen(stage, suggestion, list, text, user);
 		this.display(searchScreen, prev, "Search Screen");
 		searchScreen.search();
 	}
