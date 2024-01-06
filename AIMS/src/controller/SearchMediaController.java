@@ -31,7 +31,7 @@ public class SearchMediaController extends HomeController {
 					" and price <= " + this.suggestion.getMaxPrice() +
 					" and price >= " + this.suggestion.getMinPrice();
 		if(this.suggestion.getRushOrder()) {
-			sql += " and support_rush_order = true ";
+			sql += " and support_rush_order = 1 ";
 		}
 		if(this.suggestion.getType() != null && !this.suggestion.getType().isBlank()) {
 			sql += " and type = '" + this.suggestion.getType() + "' ";
