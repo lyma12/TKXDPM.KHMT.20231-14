@@ -15,15 +15,15 @@ import views.screen.BaseScreenHandler;
 
 public class HomeScreen extends BaseScreenHandler {
 	@FXML
-	private Text username;
+	protected Text username;
 	@FXML
-	private ImageView logo;
+	protected ImageView logo;
 	@FXML
-	private Pane paneProfile;
+	protected Pane paneProfile;
 	@FXML
-	private Button btnLogIn;
+	protected Button btnLogIn;
 	@FXML
-	private ImageView imageLogIn;
+	protected ImageView imageLogIn;
 	
 
 	public HomeScreen(Stage stage, String screenPath) throws IOException {
@@ -35,6 +35,7 @@ public class HomeScreen extends BaseScreenHandler {
 	
 	protected void setProfile(User user, Stage stage) {
 		if(user != null) {
+			
 			this.paneProfile.setVisible(true);
 			if(this.logo != null) this.logo.setVisible(false);
 			this.username.setText(user.getName());

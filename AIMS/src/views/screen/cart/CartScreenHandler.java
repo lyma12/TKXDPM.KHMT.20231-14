@@ -16,6 +16,7 @@ import controller.ViewCartController;
 import entity.cart.Cart;
 import entity.cart.CartMedia;
 import entity.order.order;
+import entity.user.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,6 +32,7 @@ import views.screen.home.HomeScreenHandler;
 public class CartScreenHandler extends BaseScreenHandler {
 	
 	private Logger LOGGER = utils.getLogger(CartScreenHandler.class.getName());
+	private User user;
 	
 	protected ListView<MediaHandler> cart_list_item;
 	protected Button cart_btn_return;
@@ -74,6 +76,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 		try {
 			
 			PlaceOrderController placeOrderController = new PlaceOrderController();
+			if(this.user != null) placeOrderController.setUser(user);
 			placeOrderController.placeOrder(this);
 		}catch(MediaNotAvailableException e) {
 			this.not_enough_product.setVisible(true);
@@ -87,6 +90,9 @@ public class CartScreenHandler extends BaseScreenHandler {
 	
 	public ViewCartController getBController() {
 		return (ViewCartController) super.getBController();
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	public void requestToViewCart(HomeScreenHandler homeScreen) {

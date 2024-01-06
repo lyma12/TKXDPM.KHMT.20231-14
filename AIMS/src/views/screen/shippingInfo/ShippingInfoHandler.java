@@ -52,7 +52,7 @@ public class ShippingInfoHandler extends BaseScreenHandler{
 	protected Shipment shippingInfo;
 	protected order order;     //coupling class order
 
-	public ShippingInfoHandler(Stage stage, String screenPath) throws IOException {
+	public ShippingInfoHandler(Stage stage, String screenPath, order order) throws IOException {
 		super(stage, screenPath);
 		this.btn_return = (Button) this.content.lookup("#shipping_btn_return");
 		this.name = (TextField) this.content.lookup("#shipping_name");
@@ -67,6 +67,7 @@ public class ShippingInfoHandler extends BaseScreenHandler{
 		this.not_support_rush_order = (Text) this.content.lookup("#not_support_rush_order");
 		this.not_support_rush_order.setVisible(false);
 		this.shippingInfo = new Shipment();
+		setOrder(order);
 		final BooleanProperty firstTime = new SimpleBooleanProperty(true); // Variable to store the focus on stage load
 		name.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
             if(newValue && firstTime.get()){
@@ -148,12 +149,18 @@ public class ShippingInfoHandler extends BaseScreenHandler{
 		return (PlaceOrderController) super.getBController();
 	}
 	
-	public order getOrder() {
+	protected order getOrder() {
 		return this.order;
 	}
 	
 	public void setOrder(order order) {
 		this.order = order;
+		if(this.order.getUser() != null) {
+			this.name.setText(this.order.getUser().getEmail());
+			this.phone.setText(this.order.getUser().getPhone());
+			this.email.setText(this.order.getUser().getEmail());
+			
+		}
 	}
 	
 	

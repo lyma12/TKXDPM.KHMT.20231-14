@@ -10,13 +10,14 @@ import java.util.List;
 
 import entity.db.AIMSDB;
 import entity.shipping.Shipment;
+import entity.user.User;
 import utils.configs;
 
 // functional cohesion
 
 public class order {
 	private int id;
-	private int userId;
+	private User user;
 	private int shippingFees;
     private List<orderMedia> lstOrderMedia;
     private Shipment deliveryInfo;
@@ -106,9 +107,9 @@ public class order {
     	}
     	else throw new SQLException("Lỗi lấy id của order");
     	//
-    	if(order.userId != 0) {
+    	if(order.user != null) {
     		sql = "INSERT INTO 'Order' (id, deleveryInfoId, shippingFees, user_id, accept) VALUES (" + 
-    	          + orderId + " , " + deleveryId + " , '" + order.shippingFees + "', " + order.userId + ", 'false');";
+    	          + orderId + " , " + deleveryId + " , '" + order.shippingFees + "', " + order.user.getUserId() + ", 'false');";
     		stm.executeUpdate(sql);
     	}
     	else {
@@ -129,6 +130,12 @@ public class order {
     	}
     	else throw new SQLException("Lỗi thêm dữ liệu!");
     	
+    }
+    public void setUser(User user) {
+    	this.user = user;
+    }
+    public User getUser() {
+    	return this.user;
     }
     
     @Override
