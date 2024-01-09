@@ -9,15 +9,14 @@ import entity.db.AIMSDB;
 import utils.configs;
 
 public class AuthenticationService {
-	public static User authenticate(String email, String password) throws SQLException {
+	public User authenticate(String email, String password) throws SQLException {
 		if(checkPassword(email, password)) {
-			User user = User.findUser(email);
-			System.out.println(user.toString());
+			User user = new User().findUser(email);
 			return user;
 		}
 		return null;
 	}
-	private static boolean checkPassword(String email, String password) throws SQLException {
+	private boolean checkPassword(String email, String password) throws SQLException {
 		Statement pstm = AIMSDB.getConnection().createStatement();
 		String sql = "SELECT password, salt FROM User WHERE User.email = '" + email + "'";
 	    ResultSet res = pstm.executeQuery(sql);
@@ -26,7 +25,6 @@ public class AuthenticationService {
 	        String salt = res.getString("salt");
 	        String check = configs.hmacSHA512(salt, password) + salt;
 	        if(pwd.equals(check)) {
-	        	System.out.print("password success");
 	        	return true;
 	        }
 	        else {

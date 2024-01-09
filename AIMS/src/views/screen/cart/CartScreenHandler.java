@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import utils.utils;
 import utils.configs;
 import views.screen.BaseScreenHandler;
+import views.screen.home.HomeScreen;
 import views.screen.home.HomeScreenHandler;
 
 public class CartScreenHandler extends BaseScreenHandler {
@@ -95,7 +96,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 		this.user = user;
 	}
 	
-	public void requestToViewCart(HomeScreenHandler homeScreen) {
+	public void requestToViewCart(HomeScreen homeScreen) {
 		this.setPreviousScreen(homeScreen);
 		this.setScreenTitle("Cart Screen");
 		this.displayCart();

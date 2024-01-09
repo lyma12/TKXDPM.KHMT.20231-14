@@ -17,7 +17,7 @@ public class User {
     private String ho_ten;
     private int userId;
     
-    public static User findUser(String email) throws SQLException {
+    public User findUser(String email) throws SQLException {
     	Statement pstm = AIMSDB.getConnection().createStatement();
 		String sql = "SELECT * FROM User WHERE User.email = '" + email + "'";
 	    ResultSet res = pstm.executeQuery(sql);

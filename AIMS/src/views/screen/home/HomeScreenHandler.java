@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import utils.utils;
 import views.screen.BaseScreenHandler;
 import views.screen.cart.CartScreenHandler;
+import views.screen.search.SearchScreen;
 
 public class HomeScreenHandler extends HomeScreen implements Initializable {
 	@FXML
@@ -38,13 +39,12 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
 
 	public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
-		this.setProfile(this.user, stage);
+		this.setProfile(stage);
 	}
-	public HomeScreenHandler(Stage stage, String screenPath, User user, HomeController controller) throws IOException {
+	public HomeScreenHandler(Stage stage, String screenPath, User user) throws IOException {
 		super(stage, screenPath);
 		this.user = user;
 		this.setProfile(this.user, stage);
-		this.setBController(controller);
 	}
 	public HomeController getBController() {
         return (HomeController) super.getBController();
@@ -98,11 +98,13 @@ public class HomeScreenHandler extends HomeScreen implements Initializable {
         });
 		this.searchBtn.setOnMouseClicked( e ->{
 			try {
-	    	SearchMediaController controller = new SearchMediaController();
-	    	controller.processSearch(this.getStage(), this, this.searchText.getText(), user);
+			SearchScreen searchScreen = new SearchScreen(stage, this.searchText.getText(), user);
+			searchScreen.setHomeScreenHandler(this.homeScreenHandler);
+			searchScreen.setPreviousScreen(this);
+			searchScreen.setScreenTitle("Search Screen");
+			searchScreen.search();
+			searchScreen.show();
 	    	}catch(IOException e1) {
-	    		e1.printStackTrace();
-	    	}catch(SQLException e1) {
 	    		e1.printStackTrace();
 	    	}
 		});

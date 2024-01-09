@@ -10,10 +10,7 @@ package controller;
 
 import java.io.IOException;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.logging.Logger;
 
 import common.exception.InvalidDeliveryInfoException;
@@ -21,12 +18,10 @@ import common.exception.MediaOrProvinceNotSupportRushOrderException;
 import entity.order.order;
 import entity.order.orderMedia;
 import entity.shipping.Shipment;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 import utils.configs;
 import views.screen.BaseScreenHandler;
 import views.screen.shippingInfo.RushOrderScreenHandler;
-import views.screen.shippingInfo.ShippingInfoHandler;
 
 public class RushOrderController extends BaseController {
 	private static Logger LOGGER = utils.utils.getLogger(RushOrderController.class.getName());

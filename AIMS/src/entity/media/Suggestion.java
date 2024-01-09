@@ -14,32 +14,41 @@ public class Suggestion {
 	private int minPrice;
 	private String type;
 	private List<String> suggest;
+	private String query;
 	public Boolean getRushOrder() {
 		return rushOrder;
 	}
 	public void setRushOrder(Boolean rushOrder) {
+		if(rushOrder) this.query += " and support_rush_order = 1 ";
 		this.rushOrder = rushOrder;
 	}
 	public int getMaxPrice() {
 		return maxPrice;
 	}
 	public void setMaxPrice(int maxPrice) {
+		if(maxPrice < Integer.MAX_VALUE) this.query += " and price <= " + maxPrice;
 		this.maxPrice = maxPrice;
 	}
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
+		if(type != null) this.query += " and type = '" + type + "' ";
 		this.type = type;
 	}
 	public int getMinPrice() {
 		return minPrice;
 	}
+	public String getQuery() {
+		return this.query;
+	}
 	public void setMinPrice(int minPrice) {
+		if(minPrice > Integer.MIN_VALUE) this.query += " and price >= " + minPrice;
 		this.minPrice = minPrice;
 	}
 	
 	public Suggestion() {
+		this.query = "";
 		this.rushOrder = false;
 		this.maxPrice = Integer.MAX_VALUE;
 		this.minPrice = Integer.MIN_VALUE;

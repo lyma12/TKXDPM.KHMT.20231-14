@@ -1,14 +1,15 @@
 package views.screen.search;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.CustomTextField;
-import org.controlsfx.control.textfield.TextFields;
+import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 import common.exception.ViewCartException;
 import controller.SearchMediaController;
 import controller.ViewCartController;
@@ -62,26 +63,13 @@ public class SearchScreen extends BaseScreenHandler {
 	private List<media> listMedia;
 	private String query;
 	private User user;
-
-	public SearchScreen(Stage stage, Suggestion suggestion, List<String> type, String text, User user) throws IOException, SQLException {
+	
+	public SearchScreen(Stage stage, String text, User user) throws IOException {
 		super(stage, configs.SEARCH_SCREEN);
-		type.add("All");
-		this.suggestions = suggestion;
+		this.setBController(new SearchMediaController());
+		this.suggestions = this.getBController().getSuggestion();
 		this.searchText.setText(text);
-		this.btnReturn.setOnMouseClicked( e -> this.getPreviousScreen().show());
-		this.minPrice.setOnKeyReleased(event -> handlePriceChange(this.minPrice));
-		this.maxPrice.setOnKeyReleased(event -> handlePriceChange(this.maxPrice));
-		this.searchByType.getItems().setAll(type);
-		this.sort.getItems().setAll(sortType);
-		this.sort.setOnAction(e -> {
-			this.sortMedia();
-		});
-		this.searchByType.setOnAction(e ->{
-			this.search();
-		});
-		this.more.setOnMouseClicked(e -> getMoreMedia());
-		this.btnSearch.setOnMouseClicked(e -> search());
-		this.listMedia = new ArrayList<media>();
+		this.user = user;
 		this.btnCart.setOnMouseClicked(e ->{
 			CartScreenHandler cartScreen;
 	           try {
@@ -95,6 +83,27 @@ public class SearchScreen extends BaseScreenHandler {
 	                throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
 	            }
 		});
+		List<String> type;
+		try {
+			type = this.getBController().getAllTypeMedia();
+			type.add("All");
+			this.searchByType.getItems().setAll(type);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.btnReturn.setOnMouseClicked( e -> this.getPreviousScreen().show());
+		this.minPrice.setOnKeyReleased(event -> handlePriceChange(this.minPrice));
+		this.maxPrice.setOnKeyReleased(event -> handlePriceChange(this.maxPrice));
+		this.sort.getItems().setAll(sortType);
+		this.sort.setOnAction(e -> {
+			this.sortMedia();
+		});
+		this.searchByType.setOnAction(e ->{
+			this.search();
+		});
+		this.more.setOnMouseClicked(e -> getMoreMedia());
+		this.btnSearch.setOnMouseClicked(e -> search());
+		this.listMedia = new ArrayList<media>();
 		setSearchText();
 	}
 	
@@ -123,12 +132,15 @@ public class SearchScreen extends BaseScreenHandler {
 	
 	public void search() {
 		this.listMedia.clear();
+		this.suggestions = this.getBController().getSuggestion();
 		if(!this.maxPrice.getText().isBlank()) {
 			this.suggestions.setMaxPrice(Integer.parseInt(this.maxPrice.getText()));
 		}
+		else this.suggestions.setMaxPrice(Integer.MAX_VALUE);
 		if(!this.minPrice.getText().isBlank()) {
 			this.suggestions.setMinPrice(Integer.parseInt(this.minPrice.getText()));
 		}
+		else this.suggestions.setMinPrice(Integer.MIN_VALUE);
 		if(this.rushOrder.isSelected()) this.suggestions.setRushOrder(true);
 		if(this.searchByType.getValue() != null) {
 			if(!this.searchByType.getValue().contains("All")) this.suggestions.setType(this.searchByType.getValue());

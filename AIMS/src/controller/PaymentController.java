@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.logging.Logger;
 import entity.order.*;
@@ -11,26 +9,17 @@ import InterBankingInterface.InterBankingInterface;
 import VNPaySubsystem.VNPaySubsystem;
 import common.exception.GatewayTimeOutException;
 import common.exception.InternalServerErrorException;
-import common.exception.InvalidCardException;
 import common.exception.InvalidDataErrorException;
 import common.exception.NotEnoughBalanceException;
-import common.exception.PaymentException;
-import common.exception.UnrecognizedException;
 import entity.cart.Cart;
 import entity.invoice.Invoice;
 import entity.payment.Card;
 import entity.payment.PaymentTransaction;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import mail.SendMail;
 import utils.configs;
 import utils.utils;
 import views.screen.BaseScreenHandler;
-import views.screen.invoice.InvoiceScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
-import views.screen.payment.ResultScreenHandler;
 
 // functional cohesion
 public class PaymentController extends BaseController {

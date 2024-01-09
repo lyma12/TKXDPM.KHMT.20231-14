@@ -8,6 +8,7 @@ import controller.BaseController;
 import controller.HomeControl.HomeController;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import views.screen.home.HomeScreen;
 import views.screen.home.HomeScreenHandler;
 
 public class BaseScreenHandler extends FXMLScreenHandler {
@@ -16,7 +17,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 	protected final Stage stage;
 	protected Hashtable<String, String> messages;
 	private BaseController bController;
-	protected HomeScreenHandler homeScreenHandler;
+	protected HomeScreen homeScreenHandler;
 	protected String title;
 
 	
@@ -67,10 +68,10 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 	public void forward(Hashtable<String, String> messages) {
 		this.messages = messages;
 	}
-	public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
-		this.homeScreenHandler = HomeScreenHandler;
+	public void setHomeScreenHandler(HomeScreen HomeScreen) {
+		this.homeScreenHandler = HomeScreen;
 	}
-	public HomeScreenHandler getHomeScreenHandler() {
+	public HomeScreen getHomeScreenHandler() {
 		return this.homeScreenHandler;
 	}
 	public Stage getStage() {
